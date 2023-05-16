@@ -10,7 +10,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $sql = "INSERT INTO users (email, password) VALUES (:email, :password)"; //variable de sql
 
     $stmt = $conn->prepare($sql);//crear variable para ejecutar el metodo prepare (que ejecuta la consulta sql)
-    
+
     $stmt->bindParam(':email', $_POST['email']);//vincular parametros
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//almacenar la contraseña en una variable y cifrarla
     $stmt->bindParam(':password', $password);

@@ -39,6 +39,8 @@
 
         <a href="iniciar_sesion.php">Login</a> or
         <a href="registrarse.php">SignUp</a>
+        <a href="encuesta.php">Encuesta de satisfacción</a>
+        <a href="partida.php">Partida</a>
     <?php endif; ?>
     </body>
 </html>

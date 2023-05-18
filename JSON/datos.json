@@ -1,0 +1,88 @@
+{
+  "preguntas": [
+    {
+      "id": "pregunta1",
+      "pregunta": "¿Cuál es el capital de Francia?",
+      "respuestas": ["Londres", "Madrid", "Berlín", "París"],
+      "respuesta_correcta": "París",
+      "dificultad": 1
+    },
+    {
+      "id": "pregunta2",
+      "pregunta": "¿En qué año se descubrió América?",
+      "respuestas": ["1492", "1776", "1812", "1914"],
+      "respuesta_correcta": "1492",
+      "dificultad": 2
+    },
+    {
+      "id": "pregunta3",
+      "pregunta": "¿Cuál es el símbolo químico del oro?",
+      "respuestas": ["O", "Au", "Ag", "Gd"],
+      "respuesta_correcta": "Au",
+      "dificultad": 3
+    },
+    {
+      "id": "pregunta4",
+      "pregunta": "¿Cuál es el océano más grande del mundo?",
+      "respuestas": ["Océano Pacífico", "Océano Atlántico", "Océano Índico", "Océano Ártico"],
+      "respuesta_correcta": "Océano Pacífico",
+      "dificultad": 1
+    },
+    {
+      "id": "pregunta5",
+      "pregunta": "¿Cuál es el autor de la novela 'Cien años de soledad'?",
+      "respuestas": ["Gabriel García Márquez", "Pablo Neruda", "Jorge Luis Borges", "Mario Vargas Llosa"],
+      "respuesta_correcta": "Gabriel García Márquez",
+      "dificultad": 5
+    },
+    {
+      "id": "pregunta6",
+      "pregunta": "¿Cuál es el planeta más grande del Sistema Solar?",
+      "respuestas": ["Tierra", "Marte", "Júpiter", "Venus"],
+      "respuesta_correcta": "Júpiter",
+      "dificultad": 6
+    },
+    {
+      "id": "pregunta7",
+      "pregunta": "¿Cuál es la montaña más alta del mundo?",
+      "respuestas": ["Everest", "K2", "Kilimanjaro", "Matterhorn"],
+      "respuesta_correcta": "Everest",
+      "dificultad": 7
+    },
+    {
+      "id": "pregunta8",
+      "pregunta": "¿Cuál es el animal más rápido del mundo?",
+      "respuestas": ["Leopardo", "Guepardo", "Lobo", "Jaguar"],
+      "respuesta_correcta": "Guepardo",
+      "dificultad": 8
+    },
+    {
+      "id": "pregunta9",
+      "pregunta": "¿Cuál es el pintor más famoso del Renacimiento?",
+      "respuestas": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+      "respuesta_correcta": "Leonardo da Vinci",
+      "dificultad": 9
+    },
+    {
+      "id": "pregunta10",
+      "pregunta": "¿Cuál es la lengua más hablada del mundo?",
+      "respuestas": ["Español", "Inglés", "Mandarín", "Hindi"],
+      "respuesta_correcta": "Mandarín",
+      "dificultad": 10
+    },
+    {
+      "id": "pregunta11",
+      "pregunta": "¿Cuál es el río más largo del mundo?",
+      "respuestas": ["Nilo", "Amazonas", "Yangtsé", "Mississippi"],
+      "respuesta_correcta": "Amazonas",
+      "dificultad": 11
+    },
+    {
+      "id": "pregunta12",
+      "pregunta": "¿Cuál es el metal más abundante en la corteza terrestre?",
+      "respuestas": ["Hierro", "Aluminio", "Cobre", "Plomo"],
+      "respuesta_correcta": "Aluminio",
+      "dificultad": 1
+    }
+  ]
+}

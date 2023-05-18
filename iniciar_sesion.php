@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: partida.php');
 }
 require 'database.php';
 
@@ -17,7 +17,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
         $_SESSION['user_id'] = $results['id'];
-        header("Location: index.php");
+        header("Location: partida.php");
     } else {
         $message = 'Sorry, those credentials do not match';
     }
@@ -37,9 +37,9 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 <h1>Login</h1>
 <span>or <a href="registrarse.php">registrate</a></span>
 
-<?php if(!empty($message)): ?>
-    <p> <?= $message ?></p>
-<?php endif; ?>
+<?php //if(!empty($message)): ?>
+<!--    <p> --><?php //= $message ?><!--</p>-->
+<?php //endif; ?>
 
 <form action="iniciar_sesion.php" method="post">
     <input type="text" name="email" placeholder="Ingresa el email">

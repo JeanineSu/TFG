@@ -39,6 +39,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 <h1>Registrarse</h1>
 <span>or <a href="iniciar_sesion.php">Logeate</a></span>
 <form action="registrarse.php" method="post">
+
     <input type="text" name="email" placeholder="Ingresa el email">
     <input type="password" name="password" placeholder="escribe tu contraseña">
     <input type="password" name="confirm_password" placeholder="repite tu contraseña"> <!--esto igual sobra porque no

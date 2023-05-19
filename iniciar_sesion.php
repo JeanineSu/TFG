@@ -3,6 +3,7 @@
 session_start();
 
 if (isset($_SESSION['user_id'])) {
+    $id_user= $_SESSION['user_id'];
     header('Location: partida.php');
 }
 require 'database.php';
@@ -34,17 +35,17 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 </head>
 <body>
 <?php require 'partials/header.php'?>
-<h1>Login</h1>
-<span>or <a href="registrarse.php">registrate</a></span>
+<h1>Iniciar sesión</h1>
+<span><a href="registrarse.php">Registrarse</a></span>
 
-<?php //if(!empty($message)): ?>
-<!--    <p> --><?php //= $message ?><!--</p>-->
-<?php //endif; ?>
+<?php if(!empty($user)): ?>
+    <p> <?= $message ?></p>
+<?php endif; ?>
 
 <form action="iniciar_sesion.php" method="post">
-    <input type="text" name="email" placeholder="Ingresa el email">
-    <input type="password" name="password" placeholder="escribe tu contraseña">
-    <input type="submit" value="enviar">
+    <input type="text" name="email" placeholder="Escribe tu email" class="caja">
+    <input type="password" name="password" placeholder="Escribe tu contraseña">
+    <input type="submit" value="Enviar">
 </form>
 </body>
 </html>

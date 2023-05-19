@@ -1,9 +1,13 @@
 "use strict";
 
+import data from './JSON/datos.json' assert { type: 'json' };
+
 let aciertos = 0;
 let temporizador;
 let comodin_publico_usado = false;
 let comodin_50 = false;
+let usuario;
+
 
 const quizContainer = $('#quizContainer');
 const quizForm = $('#quizForm');
@@ -18,7 +22,12 @@ const dinero = {
   7: '500.000 €',
   8: '750.000 €',
   9: '800.000 €',
-  10:'1.000.000 €'
+  10:'1.000.000 €',
+  11: '',
+  12: '',
+  13: '',
+  14: '',
+  15: '',
 }
 
 $('#temporizador').hide()
@@ -27,176 +36,166 @@ $('#dinero').hide()
 
 $(document).ready(function(){
   $('#start').click(function(){
+    usuario = $("#usuario").text();
     $('#temporizador').show()
     $('#aciertos').show()
     $("#botones_juego").show()
 
     $(this).hide()
+
     pintarPreguntas(1);
   });
 
   $("#plantarse").click(function(event){
     event.preventDefault();
-    if (aciertos < 3){
-      alert("Lo siento pero te vas sin nada")
+
+    const maximo_preguntas = Object.keys(dinero).length;
+    if (aciertos < (maximo_preguntas / 2) ){
+      alert("Lo siento, pero te vas sin nada")
       location.reload()
       return;
     }
-  
-    alert("Enhorabuena, tu premio es de " + dinero[aciertos]);
+
+    else if(aciertos > (maximo_preguntas / 2) && aciertos < (maximo_preguntas - 3)){
+      alert("Enhorabuena, usuario, te llevas " + parseInt(dinero[aciertos]) / 2 + "K");
+      location.reload()
+      return;
+    }
+
+    alert("Enhorabuena, tu premio es de " + dinero[aciertos] );
+    return;
   })
 })
 
+
 function pintarPreguntas(dificultad, respuesta = null){
+  clearInterval(temporizador);
+  startTimer(10);
 
-  $.getJSON('./JSON/datos.json', function(data) {
-    // Manipula los datos del archivo JSON aquí
-    clearInterval(temporizador);
-    startTimer(30);
-    let nivel;
+  const maximo_preguntas = Object.keys(dinero).length;
 
-    $("#nivel_pregunta").show().find("span").text(nivel)
-    console.log(data)
-    var preguntas = data.preguntas;
+  $("#nivel_pregunta").show().find("input#nivel_pregunta_actual").val(dificultad)
 
-    const preguntasFiltradas = preguntas.filter(function(pregunta) {
+  let preguntas = getQuestion(dificultad, respuesta);
 
-      if(respuesta != null){
-        return pregunta.respuesta_correcta === respuesta;
-      }
+  // while(preguntas == undefined){
+  //   dificultad++;
+  //   preguntas = getQuestion(dificultad, respuesta);
+  // }
 
-      return pregunta.dificultad === dificultad;
+  const pregunta = preguntas.pregunta;
+  var respuestas = preguntas.respuestas;
+  const id = preguntas.id;
+  const respuesta_correcta = preguntas.respuesta_correcta;
+
+  if (comodin_50) {
+    respuestas = aplicarComodin50(respuestas, respuesta_correcta);
+    comodin_50 = false;
+  }
+
+  let porcentajes;
+  if(comodin_publico_usado){
+    porcentajes = aplicarComodinPublico(respuestas);
+  }
+
+  respuestas.sort(ordenarRespuestasAleatoriamente);
+
+  let questionElement = $('<div class="active" id="pregunta_'+id+'">');
+  questionElement.append('<p>' + pregunta + '</p>');
+  $.each(respuestas, function(j){
+    var input = $('<input name="respuestas" class="respuesta'+(j+1)+'">').attr({
+      type: 'radio',
+      value: respuestas[j]
     });
-
-    const posicionAleatoria = Math.floor(Math.random() * preguntasFiltradas.length);
-
-    preguntas = preguntasFiltradas[posicionAleatoria];
-
-    const pregunta = preguntas.pregunta;
-    var respuestas = preguntas.respuestas;
-    const id = preguntas.id;
-    const respuesta_correcta = preguntas.respuesta_correcta;
-
-    if (comodin_50) {
-      respuestas = aplicarComodin50(respuestas, respuesta_correcta);
-      comodin_50 = false;
-    }
-
-    let porcentajes;
-    if(comodin_publico_usado){
-      porcentajes = aplicarComodinPublico(respuestas);
-    }
-
-    let questionElement = $('<div class="active" id="pregunta_'+id+'">');
-    questionElement.append('<p>' + pregunta + '</p>');
-    $.each(respuestas, function(j){
-      var input = $('<input>').attr({
-        type: 'radio',
-        value: respuestas[j]
-      });
-      var label = $('<label>').text(respuestas[j]);
-
-      if(comodin_publico_usado){
-        label = $('<label>').text(respuestas[j]  + ' (' + porcentajes[j] + '%)');
-      }
-
-      questionElement.append(input);
-      questionElement.append(label);
-      questionElement.append('<br>');
-    })
+    var label = $('<label>').text(respuestas[j]);
 
     if(comodin_publico_usado){
-      comodin_publico_usado = false;
+      label = $('<label>').text(respuestas[j]  + ' (' + porcentajes[j] + '%)');
     }
 
-    quizContainer.append(questionElement);
-
-    questionElement.on('change', 'input[type="radio"]', function() {
-      var respuestaSeleccionada = $(this);
-      const respuestaUsuario = $(this).val();
-
-      if(respuestaUsuario === respuesta_correcta){
-        respuestaSeleccionada.css('background-color', 'green');
-        respuestaSeleccionada.next('label').css('background-color', 'green');
-        aciertos++;
-        $('#dinero').show()
-        $('#dinero_acumulado').text(dinero[aciertos])
-        $("#aciertos_acumulados").text(aciertos)
-
-        nivel = aciertos + 1;
-        console.log(nivel)
-        $("#pregunta_"+id).removeClass('active').hide();
-        pintarPreguntas(nivel)
-
-        // if(aciertos <= 10){
-        // }else{
-        //   alert("ENHORABUENA HAS GANADO " + dinero[aciertos])
-        //   return;
-        // }
-      }else{
-        respuestaSeleccionada.css('background-color', 'red');
-        respuestaSeleccionada.next('label').css('background-color', 'red');
-        // alert("HAS PERDIDO")
-      }
-    });
-
-    $("#comodin_50").click(function(event){
-      event.preventDefault();
-      $(this).remove()
-
-      $(".active").remove()
-      comodin_50 = true;
-
-      if(nivel == undefined){
-        nivel = aciertos + 1;
-      }
-      pintarPreguntas(nivel, respuesta_correcta)
-    })
-
-    $("#comodin_publico").click(function(event){
-      event.preventDefault();
-      $(this).remove()
-      $(".active").remove()
-
-      console.log("Nivel en este comodin" + nivel)
-
-      comodin_publico_usado = true;
-      if(nivel == undefined){
-        nivel = aciertos + 1;
-      }
-      pintarPreguntas(nivel, respuesta_correcta)
-    })
-
-    $("#comodin_llamada").click(function(event){
-      event.preventDefault();
-      $(".active").remove()
-
-      if(nivel == undefined){
-        nivel = aciertos + 1;
-      }
-      var pregunta_actual = [];
-
-      $('div.active input[type="radio"]').each(function() {
-        var value = $(this).val();
-
-        pregunta_actual.push(value);
-      });
-
-      $(this).remove()
-      const posible_respuesta = aplicarComodinLlamada(pregunta_actual, respuesta_correcta, 60);
-      console.log(posible_respuesta)
-      pintarPreguntas(nivel, respuesta_correcta)
-
-      alert("Yo creo que la respuesta correcta es " + posible_respuesta);
-    })
+    questionElement.append(input);
+    questionElement.append(label);
+    questionElement.append('<br>');
   })
-      .done(function() {
-        console.log('Carga del archivo JSON exitosa');
-      })
-      .fail(function(jqxhr, textStatus, error) {
-        var err = textStatus + ', ' + error;
-        console.log('Error al cargar el archivo JSON: ' + err);
-      });
+
+  if(comodin_publico_usado){
+    comodin_publico_usado = false;
+  }
+
+  quizContainer.append(questionElement);
+
+  questionElement.on('change', 'input[type="radio"]', function() {
+    var respuestaSeleccionada = $(this);
+    const respuestaUsuario = $(this).val();
+
+    if(respuestaUsuario === respuesta_correcta){
+      respuestaSeleccionada.css('background-color', 'green');
+      respuestaSeleccionada.next('label').css('background-color', 'green');
+      aciertos++;
+      $('#dinero').show()
+      $('#dinero_acumulado').text(dinero[aciertos])
+      $("#aciertos_acumulados").text(aciertos)
+
+      dificultad = aciertos + 1;
+      $("#pregunta_"+id).removeClass('active').hide();
+
+      if(dificultad > maximo_preguntas){
+        alert("ENHORABUENA, " + usuario + " HAS GANADO " + dinero[aciertos])
+      }else{
+        pintarPreguntas(dificultad)
+      }
+
+      return;
+    }else{
+      respuestaSeleccionada.css('background-color', 'red');
+      respuestaSeleccionada.next('label').css('background-color', 'red');
+      alert("HAS PERDIDO")
+      $('#submit').click()
+    }
+  });
+
+  $("#comodin_50").click(function(event){
+    event.preventDefault();
+    $(this).remove()
+
+    $(".active").remove()
+    comodin_50 = true;
+
+    pintarPreguntas(dificultad, respuesta_correcta)
+  })
+
+  $("#comodin_publico").click(function(event){
+    event.preventDefault();
+    $(this).remove()
+    $(".active").remove()
+
+    comodin_publico_usado = true;
+    pintarPreguntas(dificultad, respuesta_correcta)
+  })
+
+  $("#comodin_llamada").click(function(event){
+    event.preventDefault();
+
+    var pregunta_actual = [];
+
+    $('div.active:last-child input[type="radio"]').each(function() {
+      var value = $(this).val();
+      pregunta_actual.push(value);
+    });
+
+    const posible_respuesta = aplicarComodinLlamada(pregunta_actual, respuesta_correcta, 60);
+    // // console.log(posible_respuesta)
+    // // pintarPreguntas(dificultad, respuesta_correcta)
+
+    console.log("Yo creo que la respuesta correcta es " + posible_respuesta);
+
+    // $("div.active").remove()
+
+  })
+}
+
+function ordenarRespuestasAleatoriamente(){
+  return Math.random() - 0.5;
 }
 
 function aplicarComodin50(respuestas, respuesta_correcta){
@@ -232,10 +231,27 @@ function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto
   }
 
   const respuestasAleatorias = respuestas.filter(respuesta => respuesta !== respuesta_correcta);
-  
+
   let posicionAleatoria = Math.floor(Math.random() * respuestasAleatorias.length);
 
   return respuestasAleatorias[posicionAleatoria];
+}
+
+
+function getQuestion(dificultad, respuesta = null){
+  const preguntas = data.preguntas;
+  const preguntasFiltradas = preguntas.filter(function(pregunta) {
+
+    if(respuesta != null){
+      return pregunta.respuesta_correcta === respuesta;
+    }
+
+    return pregunta.dificultad === dificultad;
+  });
+
+  const posicionAleatoria = Math.floor(Math.random() * preguntasFiltradas.length);
+
+  return preguntasFiltradas[posicionAleatoria];
 }
 
 function startTimer(segundos){
@@ -247,7 +263,9 @@ function startTimer(segundos){
 
     if (segundos <= 0) {
       clearInterval(temporizador);
-      // alert("HAS PERDIDO")
+      alert("SE HA ACABADO EL TIEMPO, HAS PERDIDO. " + usuario)
+      $('#submit').click()
+      return;
     }
   }, 1000);
 }

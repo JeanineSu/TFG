@@ -41,10 +41,10 @@ if (!empty($_POST['edad']) && !empty($_POST['ciudad']) && !empty($_POST['sexo'])
 <h1>ENCUESTA</h1>
 <form action="encuesta.php" method="post">
 
-    Edad:<input type="text" name="edad" pattern="[0-9]+" required>
+    Edad:<input type="number" inputmode="numeric" min="18" max="100" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" title="Ingrese solo números">
     Ciudad:<input type="text" name="ciudad">
     Sexo:<input type="text" name="sexo" placeholder="">
-    Valora del 1 al 10:<input type="text"  name="nota" pattern="[0-9]+" required>
+    Valora del 1 al 10:<input type="text" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" title="Ingrese solo números">
     <input type="submit" value="enviar">
 </form>
 </body>

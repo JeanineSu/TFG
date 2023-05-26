@@ -27,6 +27,7 @@ if (isset($_SESSION['user_id'])){
 
 <?php if(!empty($user)): ?>
     <br> Bienvenido <span id="usuario"> <?= $user['apodo'];  ?></span>
+    <a href="editar_perfil.php">Editar perfil</a>
     <br>Comienza el juego
     <a href="logout.php">
         Logout
@@ -35,18 +36,27 @@ if (isset($_SESSION['user_id'])){
 <br><br><br>
 <body>
 <h1>Quien quiere ser millonario</h1>
-<button>Musica</button>
+<audio src="./medios/respuesta_incorrecta.mp3" id="incorrecto" ></audio>
+<audio src="./medios/intro.mp3" id="intro"></audio>
+
+<div style="display:none;" class="musica">
+    <button id="play-button">
+        <img class="img_musica" src="images/sonido.png" alt="Texto alternativo">
+        Musica</button>
+    <div id="player"></div>
+</div>
+
 <p id="temporizador">Temporizador: <span id="tiempo"></span></p>
 
 <button id="start">Comenzar juego</button>
 
-<form action="datos_partida.php" method="post" id="quizForm">
-    <p style="display:none;" id="nivel_pregunta">Pregunta: <input name="nivel_pregunta_actual" id="nivel_pregunta_actual"></p>
+<form action="perder.php" method="post" id="quizForm">
+    <p style="display:none;" id="nivel_pregunta">Pregunta: <span id="nivel_pregunta_actual"></span></p>
     <p id="aciertos">Aciertos: <span name="aciertos_acumulados" id="aciertos_acumulados"></span></p>
     <div id="quizContainer"></div>
     <div style="display:none;" id="botones_juego">
-        <button id="comodin_publico">Comodin del publico</button>
-        <button id="comodin_llamada">Comodin de la llamada</button>
+        <button id="comodin_publico"><img class="img_publico" src="images/publico.png" alt=""> </button>
+        <button id="comodin_llamada"><img class="img_llamada" src="images/llamada.png" alt=""> </button>
         <button id="comodin_50">50%</button>
         <button id="plantarse">Me planto</button>
     </div>

@@ -3,6 +3,12 @@ session_start();
 require 'database.php';
 
 if (isset($_SESSION['user_id'])) {
+    // Verificar si el perfil ya ha sido editado
+    if (isset($_SESSION['profile_edited'])) {
+        echo "El perfil ya ha sido editado.";
+        exit;
+    }
+
     // Verificar si se ha enviado un formulario para actualizar los datos
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener los datos enviados por el formulario
@@ -17,6 +23,9 @@ if (isset($_SESSION['user_id'])) {
         $stmt->bindParam(':password', $newPassword);
         $stmt->bindParam(':id', $_SESSION['user_id']);
         $stmt->execute();
+
+        // Marcar el perfil como editado
+        $_SESSION['profile_edited'] = true;
 
         // Redirigir a una página de éxito o mostrar un mensaje de confirmación
         // header('Location: success.php');

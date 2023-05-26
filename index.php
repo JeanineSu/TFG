@@ -25,7 +25,7 @@
     <title>Bienvenido</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="e" href="logo/logo.png">
+    <link rel="e" href="images/logo.png">
 
 </head>
     <body>

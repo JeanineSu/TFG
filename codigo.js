@@ -6,28 +6,27 @@ let aciertos = 0;
 let temporizador;
 let comodin_publico_usado = false;
 let comodin_50 = false;
-let usuario;
-
+let musica = false;
 
 const quizContainer = $('#quizContainer');
 const quizForm = $('#quizForm');
 
 const dinero = {
   1: '1000 €',
-  2: '10.000 €',
-  3: '50.000 €',
-  4: '100.000 €',
-  5: '200.000 €',
-  6: '300.000 €',
-  7: '500.000 €',
-  8: '750.000 €',
-  9: '800.000 €',
-  10:'1.000.000 €',
-  11: '',
-  12: '',
-  13: '',
-  14: '',
-  15: '',
+  2: '5000 €',
+  3: '10.000 €',
+  4: '50.000 €',
+  5: '100.000 €',
+  6: '200.000 €',
+  7: '300.000 €',
+  8: '350.000 €',
+  9:  '400.000 €',
+  10: '500.000 €',
+  11: '600.000 €',
+  12: '700.000 €',
+  13: '800.000 €',
+  14: '900.000 €',
+  15: '1.000.000 €',
 }
 
 $('#temporizador').hide()
@@ -35,8 +34,9 @@ $('#aciertos').hide()
 $('#dinero').hide()
 
 $(document).ready(function(){
+
   $('#start').click(function(){
-    usuario = $("#usuario").text();
+    $(".musica").show()
     $('#temporizador').show()
     $('#aciertos').show()
     $("#botones_juego").show()
@@ -44,7 +44,30 @@ $(document).ready(function(){
     $(this).hide()
 
     pintarPreguntas(1);
+
   });
+
+
+  $("#play-button").click(function(){
+
+    if(musica){
+      musica = false;
+      $("#intro").get(0).pause()
+      $("#play-button").css("background-color", "red");
+    }else{
+      musica = true;
+      $("#intro").get(0).play()
+      $("#play-button").css("background-color", "green");
+    }
+
+    var $p = $("<p>").text("Música " + (musica ? "activada" : "desactivada"));
+
+    $(".musica").append($p);
+
+    setTimeout(function() {
+      $p.remove();
+    }, 2500);
+  })
 
   $("#plantarse").click(function(event){
     event.preventDefault();
@@ -70,18 +93,14 @@ $(document).ready(function(){
 
 function pintarPreguntas(dificultad, respuesta = null){
   clearInterval(temporizador);
-  startTimer(10);
+  startTimer(30, '#tiempo');
+  $(".posible_respuesta").remove();
 
   const maximo_preguntas = Object.keys(dinero).length;
 
-  $("#nivel_pregunta").show().find("input#nivel_pregunta_actual").val(dificultad)
+  $("#nivel_pregunta").show().find("span").text(dificultad)
 
-  let preguntas = getQuestion(dificultad, respuesta);
-
-  // while(preguntas == undefined){
-  //   dificultad++;
-  //   preguntas = getQuestion(dificultad, respuesta);
-  // }
+  const preguntas = getQuestion(dificultad, respuesta);
 
   const pregunta = preguntas.pregunta;
   var respuestas = preguntas.respuestas;
@@ -140,17 +159,33 @@ function pintarPreguntas(dificultad, respuesta = null){
       $("#pregunta_"+id).removeClass('active').hide();
 
       if(dificultad > maximo_preguntas){
-        alert("ENHORABUENA, " + usuario + " HAS GANADO " + dinero[aciertos])
+        alert("ENHORABUENA HAS GANADO " + dinero[aciertos])
+        //$('#submit').click()
+        window.location.href = "ganar.php";
       }else{
         pintarPreguntas(dificultad)
       }
 
       return;
     }else{
+
+      if(musica){
+
+        let intro = $("#intro").get(0);
+
+        if(!intro.paused){
+          intro.pause()
+        }
+
+        $("#incorrecto").get(0).play();
+      }
       respuestaSeleccionada.css('background-color', 'red');
       respuestaSeleccionada.next('label').css('background-color', 'red');
       alert("HAS PERDIDO")
-      $('#submit').click()
+      setTimeout(function() {
+        window.location.href = "perder.php";
+       // $('#submit').click()
+      }, 1000);
     }
   });
 
@@ -167,29 +202,27 @@ function pintarPreguntas(dificultad, respuesta = null){
   $("#comodin_publico").click(function(event){
     event.preventDefault();
     $(this).remove()
-    $(".active").remove()
 
-    comodin_publico_usado = true;
-    pintarPreguntas(dificultad, respuesta_correcta)
+    var $p = $("<p class='votacion'>").text("El publico está votando...");
+    $("#quizContainer").append($p);
+    $(".votacion:not(:last)").remove();
+
+    setTimeout(function() {
+      $(".active").remove()
+      $p.remove();
+      comodin_publico_usado = true;
+      pintarPreguntas(dificultad, respuesta_correcta)
+    }, 2500);
   })
 
   $("#comodin_llamada").click(function(event){
     event.preventDefault();
+    $(this).remove()
 
-    var pregunta_actual = [];
-
-    $('div.active:last-child input[type="radio"]').each(function() {
-      var value = $(this).val();
-      pregunta_actual.push(value);
-    });
-
-    const posible_respuesta = aplicarComodinLlamada(pregunta_actual, respuesta_correcta, 60);
-    // // console.log(posible_respuesta)
-    // // pintarPreguntas(dificultad, respuesta_correcta)
-
-    console.log("Yo creo que la respuesta correcta es " + posible_respuesta);
-
-    // $("div.active").remove()
+    let posibleRespuesta = aplicarComodinLlamada(respuestas, respuesta_correcta, 50)
+    posibleRespuesta = $('<p class="posible_respuesta">'+posibleRespuesta+'</p>');
+    quizForm.append(posibleRespuesta)
+    $(".posible_respuesta:not(:last)").remove();
 
   })
 }
@@ -225,16 +258,22 @@ function aplicarComodinPublico(respuestas) {
 
 function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto){
 
-  const numeroAleatorio = Math.random() * 100;
+  const numeroAleatorio = Math.floor(Math.random() * 100);
+  var mensaje;
   if(numeroAleatorio < porcentajeAcierto ){
-    return respuesta_correcta;
+    mensaje = "Estoy bastante seguro de que la respuesta es ";
+    return mensaje + respuesta_correcta;
   }
 
   const respuestasAleatorias = respuestas.filter(respuesta => respuesta !== respuesta_correcta);
+  const posicionAleatoria = Math.floor(Math.random() * respuestasAleatorias.length);
+  const respuesta_final =  respuestasAleatorias[posicionAleatoria];
 
-  let posicionAleatoria = Math.floor(Math.random() * respuestasAleatorias.length);
+  mensaje = ["Estoy 100% seguro de que la respuesta es " + respuesta_final,
+    "Uf, que dificil, pues conozco la respuesta lo siento",
+    "Estoy un poco al 50/50 entre " + respuesta_final + " y " + respuesta_correcta + ', pero me decanto más por ' + respuesta_final]
 
-  return respuestasAleatorias[posicionAleatoria];
+  return mensaje[posicionAleatoria]
 }
 
 
@@ -254,8 +293,8 @@ function getQuestion(dificultad, respuesta = null){
   return preguntasFiltradas[posicionAleatoria];
 }
 
-function startTimer(segundos){
-  var timerElement = $('#tiempo');
+function startTimer(segundos, element){
+  var timerElement = $(element);
 
   temporizador = setInterval(function() {
     segundos--;
@@ -263,8 +302,9 @@ function startTimer(segundos){
 
     if (segundos <= 0) {
       clearInterval(temporizador);
-      alert("SE HA ACABADO EL TIEMPO, HAS PERDIDO. " + usuario)
+      alert("SE HA ACABADO EL TIEMPO, HAS PERDIDO.")
       $('#submit').click()
+      window.location.href = "perder.php";
       return;
     }
   }, 1000);

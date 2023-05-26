@@ -13,8 +13,9 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
     $stmt->bindParam(':apodo', $_POST['apodo']);//vincular parametros
     $stmt->bindParam(':email', $_POST['email']);//vincular parametros
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//almacenar la contraseña en una variable y cifrarla
-    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':password', $_POST['password']);
+//    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//almacenar la contraseña en una variable y cifrarla
+//    $stmt->bindParam(':password', $password);
 
     if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
         $message = 'oleee usuario creado';

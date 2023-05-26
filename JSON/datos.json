@@ -8,52 +8,73 @@
       "dificultad": 1
     },
     {
-      "id": "pregunta41241",
-      "pregunta": " pregunta random 2",
-      "respuestas": ["Londres", "Madrid", "Berlín", "París"],
-      "respuesta_correcta": "París",
-      "dificultad": 11
+      "id": "pregunta1",
+      "pregunta": "Membranas móviles cubiertas de piel que resguardan los ojos:",
+      "respuestas": ["Cejas", "Párpados", "Pupilas", "Pestañas"],
+      "respuesta_correcta": "Párpados",
+      "dificultad": 1
     },
     {
-      "id": "asglasga",
-      "pregunta": "pregunta random 3",
-      "respuestas": ["Londres", "Madrid", "Berlín", "París"],
-      "respuesta_correcta": "París",
-      "dificultad": 112
+      "id": "pregunta1",
+      "pregunta": "¿Cuál es la Supernena de color azul?",
+      "respuestas": ["Pétalo", "Mojo-Yoyo", "Burbuja", "Cactus"],
+      "respuesta_correcta": "Burbuja",
+      "dificultad": 1
     },
     {
-      "id": "preguntaalsgasg",
-      "pregunta": "pregunta random 5",
-      "respuestas": ["Londres", "Madrid", "Berlín", "París"],
-      "respuesta_correcta": "París",
-      "dificultad": 13
-    },
-    {
-      "id": "skfjaklsga",
-      "pregunta": "pregunta random 6",
-      "respuestas": ["Londres", "Madrid", "Berlín", "París"],
-      "respuesta_correcta": "París",
-      "dificultad": 14
-    },
-    {
-      "id": "sakjfaskjfa",
-      "pregunta": "pregunta random 7",
-      "respuestas": ["Londres", "Madrid", "Berlín", "París"],
-      "respuesta_correcta": "París",
-      "dificultad": 15
+      "id": "pregunta1",
+      "pregunta": "¿Cuál es la Supernena de color azul?",
+      "respuestas": ["Pétalo", "Mojo-Yoyo", "Burbuja", "Cactus"],
+      "respuesta_correcta": "Burbuja",
+      "dificultad": 1
     },
     {
       "id": "pregunta2",
-      "pregunta": "¿En qué año se descubrió América?",
-      "respuestas": ["1492", "1776", "1812", "1914"],
-      "respuesta_correcta": "1492",
+      "pregunta": "¿Cuál es la fórmula química del agua?",
+      "respuestas": ["H2O", "CO2", "NaCI", "C6H12O6"],
+      "respuesta_correcta": "H2O",
+      "dificultad": 2
+    },
+    {
+      "id": "pregunta2",
+      "pregunta": "¿Qué pokémon acompaña siempre a Ash Ketchum?",
+      "respuestas": ["Charmander", "Pikachu", "Squirtle", "Pichu"],
+      "respuesta_correcta": "Pikachu",
+      "dificultad": 2
+    },
+    {
+      "id": "pregunta2",
+      "pregunta": "¿Cuál fue la primera consola lanzada por Nintendo?",
+      "respuestas": ["GameBoy", "Nintendo 64", "Nintendo DS", "NES"],
+      "respuesta_correcta": "NES",
+      "dificultad": 2
+    },
+    {
+      "id": "pregunta2",
+      "pregunta": "¿Cuál fue la primera consola lanzada por Nintendo?",
+      "respuestas": ["GameBoy", "Nintendo 64", "Nintendo DS", "NES"],
+      "respuesta_correcta": "NES",
       "dificultad": 2
     },
     {
       "id": "pregunta3",
-      "pregunta": "¿Cuál es el símbolo químico del oro?",
-      "respuestas": ["O", "Au", "Ag", "Gd"],
-      "respuesta_correcta": "Au",
+      "pregunta": "¿Cuál de estas películas dirigió Tim Burton?",
+      "respuestas": ["Men in Black", "Pesadilla antes de Navidad", "Big Fish", "Yo Robot"],
+      "respuesta_correcta": "Big Fish",
+      "dificultad": 3
+    },
+    {
+      "id": "pregunta3",
+      "pregunta": "¿Qué personaje NO pertenece al juego League of Legends?",
+      "respuestas": ["Lux", "Tryndamere", "Toadette", "Miss Fortune"],
+      "respuesta_correcta": "Toadette",
+      "dificultad": 3
+    },
+    {
+      "id": "pregunta3",
+      "pregunta": "¿Cuántos balones de oro tiene Messi?",
+      "respuestas": ["5", "7", "3", "4"],
+      "respuesta_correcta": "7",
       "dificultad": 3
     },
     {
@@ -61,6 +82,20 @@
       "pregunta": "¿Cuál es el océano más grande del mundo?",
       "respuestas": ["Océano Pacífico", "Océano Atlántico", "Océano Índico", "Océano Ártico"],
       "respuesta_correcta": "Océano Pacífico",
+      "dificultad": 4
+    },
+    {
+    "id": "pregunta4",
+    "pregunta": "¿Cuál de los siguientes físicos no ganó un nobel?",
+    "respuestas": ["Albert Einstein", "Richard Feynman", "Niels Bohr", "Stephen Hawking"],
+    "respuesta_correcta": "Albert Einstein",
+    "dificultad": 4
+    },
+    {
+      "id": "pregunta4",
+      "pregunta": "¿Cuál de los siguientes pintores era también arquitecto?",
+      "respuestas": ["Vincent van Goh", "Pablo Picasso", "Michelangelo", "Leonardo da Vinci"],
+      "respuesta_correcta": "Leonardo da Vinci",
       "dificultad": 4
     },
     {
@@ -72,59 +107,115 @@
     },
     {
       "id": "pregunta6",
-      "pregunta": "¿Cuál es el planeta más grande del Sistema Solar?",
-      "respuestas": ["Tierra", "Marte", "Júpiter", "Venus"],
-      "respuesta_correcta": "Júpiter",
+      "pregunta": "¿Cuál de los siguientes escritores no es conocido por escribir obras de ciencia ficción?",
+      "respuestas": ["H.G. Wells", "Isaac Asimov", "Arthur C. Clarke", "Ernest Hemingway"],
+      "respuesta_correcta": "Isaac Asimov",
       "dificultad": 6
     },
     {
-      "id": "pregunta21",
-      "pregunta": "¿Cuál es el planeta más grande del Sistema Solar?",
-      "respuestas": ["Tierra", "Marte", "Júpiter", "Venus"],
-      "respuesta_correcta": "Júpiter",
-      "dificultad": 6
+    "id": "pregunta6",
+    "pregunta": "¿Cuál de las siguientes enfermedades es causada por un virus?",
+    "respuestas": ["Malaria", "Tuberculosis", "Sarampión", "Diabetes"],
+    "respuesta_correcta": "Sarampión",
+    "dificultad": 6
+    },
+    {
+    "id": "pregunta6",
+    "pregunta": "¿Qué es el ébano?",
+    "respuestas": ["Un mineral", "Un animal", "Una madera", "Una tela"],
+    "respuesta_correcta": "Una madera",
+    "dificultad": 6
     },
     {
       "id": "pregunta7",
-      "pregunta": "¿Cuál es la montaña más alta del mundo?",
-      "respuestas": ["Everest", "K2", "Kilimanjaro", "Matterhorn"],
-      "respuesta_correcta": "Everest",
+      "pregunta": "¿En qué juego hace su primera aparición Leon Kennedy en la saga de Resident Evil?",
+      "respuestas": ["Resident Evil", "Resident Evil 4", "Resident Evil 2", "Resident Evil: Code Veronica"],
+      "respuesta_correcta": "Resident Evil 2",
+      "dificultad": 7
+    },
+    {
+      "id": "pregunta7",
+      "pregunta": "¿En qué año se creó el famoso programa español Grand Prix?",
+      "respuestas": ["1992", "1998", "1995", "2001"],
+      "respuesta_correcta": "1995",
+      "dificultad": 7
+    },
+    {
+      "id": "pregunta7",
+      "pregunta": "¿Cuál es el nombre de la hija de Kratos en God of War?",
+      "respuestas": ["Ellie", "Atreus", "Perséfone", "Calíope"],
+      "respuesta_correcta": "Calíope",
       "dificultad": 7
     },
     {
       "id": "pregunta8",
-      "pregunta": "¿Cuál es el animal más rápido del mundo?",
-      "respuestas": ["Leopardo", "Guepardo", "Lobo", "Jaguar"],
-      "respuesta_correcta": "Guepardo",
+      "pregunta": "¿Cuál es el nombre completo del futbolista Cristiano Ronaldo?",
+      "respuestas": ["Cristiano Ronaldo los Santos Diego", "Cristiano Ronaldo dos Santos Aveiro", "Cristiano Ronaldo Armando Diego Ronaldo", "Cristiano Ronaldo Luis Armando Ronaldo"],
+      "respuesta_correcta": "Cristiano Ronaldo dos Santos Aveiro",
+      "dificultad": 8
+    },
+    {
+      "id": "pregunta8",
+      "pregunta": "¿Cuál es el nombre de la hija de Kratos en God of War?",
+      "respuestas": ["Ellie", "Atreus", "Perséfone", "Calíope"],
+      "respuesta_correcta": "Calíope",
       "dificultad": 8
     },
     {
       "id": "pregunta9",
-      "pregunta": "¿Cuál es el pintor más famoso del Renacimiento?",
-      "respuestas": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
-      "respuesta_correcta": "Leonardo da Vinci",
+      "pregunta": "¿Cuál es el animal más rápido del mundo?",
+      "respuestas": ["Leopardo", "Guepardo", "Lobo", "Jaguar"],
+      "respuesta_correcta": "Guepardo",
       "dificultad": 9
     },
     {
       "id": "pregunta10",
-      "pregunta": "¿Cuál es la lengua más hablada del mundo?",
-      "respuestas": ["Español", "Inglés", "Mandarín", "Hindi"],
-      "respuesta_correcta": "Mandarín",
+      "pregunta": "¿Cómo se llama la radiación emitida por los agujeros negros?",
+      "respuestas": ["Radiación Hawking", "Radiación Ganma", "Radiación Electromagnética", "Radiación Nuclear"],
+      "respuesta_correcta": "Radiación Hawking",
+      "dificultad": 10
+    },
+    {
+      "id": "pregunta10",
+      "pregunta": "¿Cuál es el planeta del sistema solar más caliente?",
+      "respuestas": ["Mercurio", "Venus", "Júpiter", "Neptuno"],
+      "respuesta_correcta": "Venus",
       "dificultad": 10
     },
     {
       "id": "pregunta11",
-      "pregunta": "¿Cuál es el río más largo del mundo?",
-      "respuestas": ["Nilo", "Amazonas", "Yangtsé", "Mississippi"],
-      "respuesta_correcta": "Amazonas",
-      "dificultad": 8
+      "pregunta": "¿Cuál es la lengua más hablada del mundo?",
+      "respuestas": ["Español", "Inglés", "Mandarín", "Hindi"],
+      "respuesta_correcta": "Mandarín",
+      "dificultad": 11
     },
     {
       "id": "pregunta12",
+      "pregunta": "¿Cuál es el río más largo del mundo?",
+      "respuestas": ["Nilo", "Amazonas", "Yangtsé", "Mississippi"],
+      "respuesta_correcta": "Amazonas",
+      "dificultad": 12
+    },
+    {
+      "id": "pregunta13",
       "pregunta": "¿Cuál es el metal más abundante en la corteza terrestre?",
       "respuestas": ["Hierro", "Aluminio", "Cobre", "Plomo"],
       "respuesta_correcta": "Aluminio",
-      "dificultad": 8
+      "dificultad": 13
+    },
+    {
+      "id": "pregunta14",
+      "pregunta": " De qué color es burbuja",
+      "respuestas": ["Rojo", "Azul", "Verde", "Rosa"],
+      "respuesta_correcta": "Azul",
+      "dificultad": 14
+    },
+    {
+      "id": "Pregunta15",
+      "pregunta": "como se llama mi perro",
+      "respuestas": ["loki", "kairy", "tobi", "kkk"],
+      "respuesta_correcta": "kairy",
+      "dificultad": 15
     }
   ]
 }

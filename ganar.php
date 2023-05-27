@@ -47,7 +47,7 @@
 <img src="./images/logo.png" alt="Quien quiere ser millonario" width="300px">
 <h1>¡ENHORABUENA!</h1>
 
-<h2>Has ganado</h2>
+<h2>Has ganado 1.000.000 €</h2>
 <a href="partida.php">Volver a jugar</a>
 <a href="encuesta.php">Encuesta de satisfacción</a>
 <a href="logout.php">Salir</a>

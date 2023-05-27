@@ -23,9 +23,9 @@
     },
     {
       "id": "pregunta1",
-      "pregunta": "¿Cuál es la Supernena de color azul?",
+      "pregunta": "¿Cuál es la Supernena de color rosa?",
       "respuestas": ["Pétalo", "Mojo-Yoyo", "Burbuja", "Cactus"],
-      "respuesta_correcta": "Burbuja",
+      "respuesta_correcta": "Pétalo",
       "dificultad": 1
     },
     {

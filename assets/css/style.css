@@ -160,7 +160,6 @@ button{
 #temporizador span {
     animation: countdown 30s linear forwards;
 }
-
 @keyframes countdown {
     0% {
         color: #000;
@@ -174,6 +173,16 @@ button{
     100% {
         color: #ff0000; /* Mantiene el color rojo */
     }
+}
+#nivel_pregunta, #aciertos{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+#aciertos_acumulados{
+    font-size: 20px;
+    font-weight: bold;
+    color: #70e000;
 }
 
 .active p{
@@ -191,8 +200,8 @@ button{
     margin-bottom: 40px;
 }
 .columna {
-    width: 20%;
-    margin: 0;
+    width: 50%;
+    float: left;
 }
 .columna label{
     background-color: black;

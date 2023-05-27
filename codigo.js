@@ -174,7 +174,7 @@ function pintarPreguntas(dificultad, respuesta = null){
       $("#pregunta_"+id).removeClass('active').hide();
 
       if(dificultad > maximo_preguntas){
-        alert("ENHORABUENA HAS GANADO " + dinero[aciertos])
+        // alert("ENHORABUENA HAS GANADO " + dinero[aciertos])
         //$('#submit').click()
         window.location.href = "ganar.php";
       }else{

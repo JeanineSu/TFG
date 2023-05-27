@@ -93,7 +93,7 @@ $(document).ready(function(){
 
 function pintarPreguntas(dificultad, respuesta = null){
   clearInterval(temporizador);
-  startTimer(30, '#tiempo');
+  startTimer(300000, '#tiempo');
   $(".posible_respuesta").remove();
 
   const maximo_preguntas = Object.keys(dinero).length;
@@ -181,7 +181,7 @@ function pintarPreguntas(dificultad, respuesta = null){
       }
       respuestaSeleccionada.css('background-color', 'red');
       respuestaSeleccionada.next('label').css('background-color', 'red');
-      alert("HAS PERDIDO")
+      // alert("HAS PERDIDO")
       setTimeout(function() {
         window.location.href = "perder.php";
        // $('#submit').click()
@@ -302,7 +302,7 @@ function startTimer(segundos, element){
 
     if (segundos <= 0) {
       clearInterval(temporizador);
-      alert("SE HA ACABADO EL TIEMPO, HAS PERDIDO.")
+      // alert("SE HA ACABADO EL TIEMPO, HAS PERDIDO.")
       $('#submit').click()
       window.location.href = "perder.php";
       return;

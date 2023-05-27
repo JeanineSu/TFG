@@ -5,6 +5,7 @@ body{
     text-align: center;
     background-image: linear-gradient(90deg, #0634ff, #490179);
 }
+
 /* Header */
 header {
     border-bottom: 2px solid #eee;
@@ -21,37 +22,24 @@ header a {
 
 h1{
     font-family: Arial, sans-serif;
-    font-size: 48px;
+    font-size: 4rem;
     font-weight: bold;
-    background-image: linear-gradient(90deg, #FF0000, #FFFF00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
 }
 h2{
     font-family: Arial, sans-serif;
     font-weight: bold;
-    background-image: linear-gradient(90deg, #FF0000, #FFFF00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: rgb(255, 255, 0);
+}
+label {
+    text-align: left;
+    color: white;
 }
 
 /*Estilo para los links*/
-a{
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    margin: 20px;
-    padding: 15px;
-    border: 2px solid white;
-    border-radius: 50px;
-    font-size: 20px;
-    background: #2d0e53;
-    box-shadow: -1px -1px 5px #fff, 2px 2px 20px #1f1e1e, inset 0px 0px 0px #fff, inset 0px 0px 0px #1f1e1e;
-    transition: all 300ms ease;
-}
+
 /*Estilo para los campos del inicio_sesion*/
-input[type="text"], [type="password"]{
+input[type="text"], [type="password"], [type="number"]{
     outline: none;
     padding: 20px;
     display: block;
@@ -59,6 +47,7 @@ input[type="text"], [type="password"]{
     border-radius: 3px;
     border: 1px solid #eee;
     margin: 20px auto;
+    background-color: #bde0fe;
 }
 /*Estilo para los botones*/
 input[type="submit"]{
@@ -74,9 +63,6 @@ input[type="submit"]{
 }
 input[type="submit"]:hover{
     background-color: #fcbf49;
-}
-input[type='text'],[type='password']{
-    background-color: #bde0fe;
 }
 
 button{
@@ -146,3 +132,75 @@ button{
     height: 59px;
     width: 134px;
 }
+
+
+/*#temporizador {*/
+/*    font-size: 36px;*/
+/*    font-weight: bold;*/
+/*    color: #333;*/
+/*    animation: temporizador-animacion 30s linear forwards;*/
+/*}*/
+
+/*@keyframes temporizador-animacion {*/
+/*    0% {*/
+/*        color: yellow; !* Color inicial *!*/
+/*    }*/
+/*    100% {*/
+/*        color: red; !* Color al llegar a 0 *!*/
+/*    }*/
+/*}*/
+#temporizador {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+}
+
+#temporizador span {
+    animation: countdown 30s linear forwards;
+}
+
+@keyframes countdown {
+    0% {
+        color: #000;
+    }
+    66.66% {
+        color: #000;
+    }
+    83.33% {
+        color: #ff0000; /* Cambia de color a rojo */
+    }
+    100% {
+        color: #ff0000; /* Mantiene el color rojo */
+    }
+}
+
+.active p{
+    background-color: black;
+    border: 2px solid yellow;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#pregunta_pregunta1 input[type="radio"] + label{
+    background-color: black;
+    border: 2px solid yellow;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+

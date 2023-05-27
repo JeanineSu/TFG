@@ -18,17 +18,19 @@ if (isset($_SESSION['user_id'])){
 <html>
 <head>
 
-  <title>Quien quiere ser millonario</title>
+    <title>Quien quiere ser millonario</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="module" src="codigo.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
+<?php require 'partials/header.php' ?>
 <?php if(!empty($user)): ?>
-    <br> Bienvenido <span id="usuario"> <?= $user['apodo'];  ?></span>
+    <br> <span style="color: white; font-family: Arial, sans-serif;font-size: 2rem; font-weight: bold">Hola</span>
+    <span id="usuario" style="color: white; font-family: Arial, sans-serif; font-size: 2rem; font-weight: bold"> <?= $user['apodo'];  ?></span>
+    <br><br>
     <a href="editar_perfil.php">Editar perfil</a>
-    <br>Comienza el juego
+    <br><br>
     <a href="logout.php">
         Logout
     </a>
@@ -46,7 +48,7 @@ if (isset($_SESSION['user_id'])){
     <div id="player"></div>
 </div>
 
-<p id="temporizador">Temporizador: <span id="tiempo"></span></p>
+<p id="temporizador"> <!--Temporizador:--> <span id="tiempo"></span></p>
 
 <button id="start">Comenzar juego</button>
 

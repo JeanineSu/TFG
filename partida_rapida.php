@@ -25,7 +25,6 @@ $stmt->execute();
 ?>
 
 
-?>
 <!doctype html>
 <html lang="en">
 <head>

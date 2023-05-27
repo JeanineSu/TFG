@@ -121,6 +121,13 @@ function pintarPreguntas(dificultad, respuesta = null){
 
   let questionElement = $('<div class="active" id="pregunta_'+id+'">');
   questionElement.append('<p>' + pregunta + '</p>');
+
+// Dividir las respuestas en dos columnas
+  var column1 = $('<div class="columna">');
+  var column2 = $('<div class="columna">');
+  questionElement.append(column1);
+  questionElement.append(column2);
+
   $.each(respuestas, function(j){
     var input = $('<input name="respuestas" class="respuesta'+(j+1)+'">').attr({
       type: 'radio',
@@ -132,10 +139,18 @@ function pintarPreguntas(dificultad, respuesta = null){
       label = $('<label>').text(respuestas[j]  + ' (' + porcentajes[j] + '%)');
     }
 
-    questionElement.append(input);
-    questionElement.append(label);
-    questionElement.append('<br>');
-  })
+    // Agregar las respuestas a las columnas correspondientes
+    if (j < 2) {
+      column1.append(input);
+      column1.append(label);
+      column1.append('<br>');
+    } else {
+      column2.append(input);
+      column2.append(label);
+      column2.append('<br>');
+    }
+  });
+
 
   if(comodin_publico_usado){
     comodin_publico_usado = false;
@@ -184,7 +199,7 @@ function pintarPreguntas(dificultad, respuesta = null){
       // alert("HAS PERDIDO")
       setTimeout(function() {
         window.location.href = "perder.php";
-       // $('#submit').click()
+        // $('#submit').click()
       }, 1000);
     }
   });

@@ -50,6 +50,7 @@
 
     <h2>Pero no te rindas aún ¿Quieres volver a intentarlo?</h2>
     <a href="partida.php">Volver a intentarlo</a>
+    <a href="encuesta.php">Encuesta de satisfacción</a>
     <a href="logout.php">Salir</a>
 
 </body>

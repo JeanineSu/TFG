@@ -96,7 +96,6 @@ if (isset($_SESSION['user_id'])) {
     <a href="iniciar_sesion.php">Iniciar sesión</a>
     <a href="registrarse.php">Registrarse</a>
     <a href="partida.php">Partida Rápida</a>
-    <a href="encuesta.php">Encuesta de satisfacción</a>
 <?php endif; ?>
 </body>
 

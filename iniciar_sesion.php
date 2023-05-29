@@ -39,10 +39,14 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         input[type="password"] {
             border: none;
         }
+        body{
+            background: url('./images/background.jpg');
+        }
 
         form {
             padding-top: 3rem;
         }
+
     </style>
 </head>
 
@@ -56,9 +60,10 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
         <input type="text" name="email" placeholder="Escribe tu email" class="caja">
         <input type="password" name="password" placeholder="Escribe tu contraseña">
-        <input type="submit" value="Confirmar">
+        <input type="submit" class="boton_style" value="Confirmar">
     </div>
 </form>
+<br><br>
 <a href="registrarse.php">Registrarse</a>
 <a href="index.php">Volver</a>
 

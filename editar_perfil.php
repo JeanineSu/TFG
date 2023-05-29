@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
         $stmt->execute();
 
         if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
-            $message = 'Datos guardados';
+            $message = 'Gracias por tus respuestas :)';
         } else { //si no se envía un mensaje de error
             $message = 'Ups! algo salió mal';
         }
@@ -56,17 +56,25 @@ if (isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Editar Perfil</title>
+
+
+    <style>
+        body{
+            background: url('./images/background.jpg');
+        }
+    </style>
 </head>
 
 <body>
+<h1>Editar perfil</h1>
 <form action="editar_perfil.php" method="POST">
     <div>
         <label for="new_apodo">Nuevo Apodo:</label>
         <input type="text" id="new_apodo" name="new_apodo" required value="<?php echo $user['apodo']; ?>">
     </div>
     <div>
-        <label for="new_email">Nuevo Email:</label><br>
-        <input type="email" id="new_email" name="new_email" required value="<?php echo $user['email']; ?>">
+        <label for="new_email">Nuevo Email:</label><br><br>
+        <input type="email" id="new_email" name="new_email" required value="<?php echo $user['email']; ?>"><br><br>
     </div>
     <div>
         <label for="new_password">Nueva Contraseña:</label>

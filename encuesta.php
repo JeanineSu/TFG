@@ -31,6 +31,12 @@ if (!empty($_POST['edad']) && !empty($_POST['ciudad']) && !empty($_POST['sexo'])
     <title>Encuesta</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        body{
+            background: url('./images/background.jpg');
+        }
+    </style>
 </head>
 
 <body>

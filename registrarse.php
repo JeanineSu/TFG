@@ -47,31 +47,6 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         form {
             padding-top: 3rem;
         }
-
-        /*.message {*/
-        /*    position: absolute;*/
-        /*    bottom: 0;*/
-        /*    width: 100%;*/
-        /*    height: 50px;*/
-        /*    background-color: #ffb703;*/
-        /*    display: flex;*/
-        /*    align-items: center;*/
-        /*    justify-content: center;*/
-
-        /*}*/
-
-        /*.close-icon {*/
-        /*    position: absolute;*/
-        /*    right: 0;*/
-        /*    font-weight: bold;*/
-        /*    margin-right: 30px;*/
-        /*    font-size: 1.2rem;*/
-        /*    cursor: pointer;*/
-        /*}*/
-
-        /*.info-icon {*/
-        /*    margin-right: 30px;*/
-        /*}*/
     </style>
 </head>
 
@@ -94,25 +69,4 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     <a href="iniciar_sesion.php">Iniciar sesión</a>
     <a href="index.php">Volver</a>
 </div>
-<!---->
-<?php //if (!empty($message)) : ?>
-<!--    <div class="message">-->
-<!--        <img src="https://cdn-icons-png.flaticon.com/512/157/157933.png" width="30px" alt="" class="info-icon">-->
-<!--        <span>--><?php //= $message ?><!--</span>-->
-<!--        <span class="close-icon" onclick="closeMessage()">X</span>-->
-<!--    </div>-->
-<?php //endif; ?>
-<!---->
-<!---->
-<!--</body>-->
-<!---->
-<!--<script>-->
-<!--    const closeMessage = () => {-->
-<!--        const messageContainer = document.querySelector('.message')-->
-<!--        const closeIcon = document.querySelector('.close-icon');-->
-<!--        messageContainer.style.display = 'none';-->
-<!--    }-->
-<!--</script>-->
-
-
 </html>

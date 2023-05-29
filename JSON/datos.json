@@ -2,7 +2,7 @@
   "preguntas": [
     {
       "id": "pregunta1",
-      "pregunta": "¿Cuál es el capital de Francia?",
+      "pregunta": "¿Cuál es la capital de Francia?",
       "respuestas": ["Londres", "Madrid", "Berlín", "París"],
       "respuesta_correcta": "París",
       "dificultad": 1
@@ -22,13 +22,6 @@
       "dificultad": 1
     },
     {
-      "id": "pregunta1",
-      "pregunta": "¿Cuál es la Supernena de color rosa?",
-      "respuestas": ["Pétalo", "Mojo-Yoyo", "Burbuja", "Cactus"],
-      "respuesta_correcta": "Pétalo",
-      "dificultad": 1
-    },
-    {
       "id": "pregunta2",
       "pregunta": "¿Cuál es la fórmula química del agua?",
       "respuestas": ["H2O", "CO2", "NaCI", "C6H12O6"],
@@ -44,16 +37,9 @@
     },
     {
       "id": "pregunta2",
-      "pregunta": "¿Cuál fue la primera consola lanzada por Nintendo?",
-      "respuestas": ["GameBoy", "Nintendo 64", "Nintendo DS", "NES"],
-      "respuesta_correcta": "NES",
-      "dificultad": 2
-    },
-    {
-      "id": "pregunta2",
-      "pregunta": "¿Cuál fue la primera consola lanzada por Nintendo?",
-      "respuestas": ["GameBoy", "Nintendo 64", "Nintendo DS", "NES"],
-      "respuesta_correcta": "NES",
+      "pregunta": "¿Cual NO es una raza de perro?",
+      "respuestas": ["Chiguagua", "Pastor Alemán", "Perro Esponjoso Aéreo", "San Bernardo"],
+      "respuesta_correcta": "Perro Esponjoso Aéreo",
       "dificultad": 2
     },
     {
@@ -85,11 +71,11 @@
       "dificultad": 4
     },
     {
-    "id": "pregunta4",
-    "pregunta": "¿Cuál de los siguientes físicos no ganó un nobel?",
-    "respuestas": ["Albert Einstein", "Richard Feynman", "Niels Bohr", "Stephen Hawking"],
-    "respuesta_correcta": "Albert Einstein",
-    "dificultad": 4
+      "id": "pregunta4",
+      "pregunta": "¿Cuál de los siguientes físicos NO ganó un nobel?",
+      "respuestas": ["Albert Einstein", "Richard Feynman", "Niels Bohr", "Stephen Hawking"],
+      "respuesta_correcta": "Albert Einstein",
+      "dificultad": 4
     },
     {
       "id": "pregunta4",
@@ -106,6 +92,20 @@
       "dificultad": 5
     },
     {
+      "id": "pregunta5",
+      "pregunta": "¿En qué año se estrenó la película 'Titanic', dirigida por James Cameron en EEUU?",
+      "respuestas": ["1996", "1997", "1998", "1999"],
+      "respuesta_correcta": "1997",
+      "dificultad": 5
+    },
+    {
+      "id": "pregunta5",
+      "pregunta": "¿Cuál es el evento deportivo más importante a nivel mundial en el deporte del fútbol?",
+      "respuestas": ["Copa Mundial de la FIFA", "Juegos Olímpicos", "Copa América", "UEFA Champions League"],
+      "respuesta_correcta": "Copa Mundial de la FIFA",
+      "dificultad": 5
+    },
+    {
       "id": "pregunta6",
       "pregunta": "¿Cuál de los siguientes escritores no es conocido por escribir obras de ciencia ficción?",
       "respuestas": ["H.G. Wells", "Isaac Asimov", "Arthur C. Clarke", "Ernest Hemingway"],
@@ -113,18 +113,18 @@
       "dificultad": 6
     },
     {
-    "id": "pregunta6",
-    "pregunta": "¿Cuál de las siguientes enfermedades es causada por un virus?",
-    "respuestas": ["Malaria", "Tuberculosis", "Sarampión", "Diabetes"],
-    "respuesta_correcta": "Sarampión",
-    "dificultad": 6
+      "id": "pregunta6",
+      "pregunta": "¿Cuál de las siguientes enfermedades es causada por un virus?",
+      "respuestas": ["Malaria", "Tuberculosis", "Sarampión", "Diabetes"],
+      "respuesta_correcta": "Sarampión",
+      "dificultad": 6
     },
     {
-    "id": "pregunta6",
-    "pregunta": "¿Qué es el ébano?",
-    "respuestas": ["Un mineral", "Un animal", "Una madera", "Una tela"],
-    "respuesta_correcta": "Una madera",
-    "dificultad": 6
+      "id": "pregunta6",
+      "pregunta": "¿Qué es el ébano?",
+      "respuestas": ["Un mineral", "Un animal", "Una madera", "Una tela"],
+      "respuesta_correcta": "Una madera",
+      "dificultad": 6
     },
     {
       "id": "pregunta7",
@@ -162,6 +162,13 @@
       "dificultad": 8
     },
     {
+      "id": "pregunta8",
+      "pregunta": "¿Cuál fue la primera consola lanzada por Nintendo?",
+      "respuestas": ["GameBoy", "Nintendo 64", "Nintendo DS", "NES"],
+      "respuesta_correcta": "NES",
+      "dificultad": 8
+    },
+    {
       "id": "pregunta9",
       "pregunta": "¿Cuál es el animal más rápido del mundo?",
       "respuestas": ["Leopardo", "Guepardo", "Lobo", "Jaguar"],
@@ -169,10 +176,31 @@
       "dificultad": 9
     },
     {
+      "id": "pregunta9",
+      "pregunta": "¿Cuál de las siguientes películas ganó el Premio Óscar a Mejor Película en el año 2019?",
+      "respuestas": ["La La Land", "Guepardo", "El renacido", "Moonlight"],
+      "respuesta_correcta": "Moonlight",
+      "dificultad": 9
+    },
+    {
+      "id": "pregunta9",
+      "pregunta": "¿En qué año se inauguró el Museo del Louvre en París?",
+      "respuestas": ["1776", "1793", "1821", "1889"],
+      "respuesta_correcta": "1793",
+      "dificultad": 9
+    },
+    {
       "id": "pregunta10",
       "pregunta": "¿Cómo se llama la radiación emitida por los agujeros negros?",
       "respuestas": ["Radiación Hawking", "Radiación Ganma", "Radiación Electromagnética", "Radiación Nuclear"],
       "respuesta_correcta": "Radiación Hawking",
+      "dificultad": 10
+    },
+    {
+      "id": "pregunta10",
+      "pregunta": "¿Cuál es el metal más ligero en la Tierra?",
+      "respuestas": ["Litio", "Aluminio", "Titanio", "Magnesio"],
+      "respuesta_correcta": "Litio",
       "dificultad": 10
     },
     {
@@ -190,6 +218,34 @@
       "dificultad": 11
     },
     {
+      "id": "pregunta11",
+      "pregunta": "¿Cuál es la molécula responsable del transporte de oxígeno en la sangre de los vertebrados?",
+      "respuestas": ["Hemoglobina", "Clorofila", "Insulina", "Mioglobina"],
+      "respuesta_correcta": "Hemoglobina",
+      "dificultad": 11
+    },
+    {
+      "id": "pregunta11",
+      "pregunta": "¿Cuál es la hormona responsable de regular el metabolismo en el cuerpo humano?",
+      "respuestas": ["Insulina", "Adrenalina", "Tiroxina", "Melatonina"],
+      "respuesta_correcta": "Tiroxina",
+      "dificultad": 11
+    },
+    {
+      "id": "pregunta12",
+      "pregunta": "¿Cuál es el órgano más grande del cuerpo humano?",
+      "respuestas": ["Hígado", "Piel", "Pulmón", "Corazón"],
+      "respuesta_correcta": "Piel",
+      "dificultad": 12
+    },
+    {
+      "id": "pregunta12",
+      "pregunta": "¿Qué científico desarrolló la teoría de la relatividad?",
+      "respuestas": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Charles Darwin"],
+      "respuesta_correcta": "Albert Einstein",
+      "dificultad": 12
+    },
+    {
       "id": "pregunta12",
       "pregunta": "¿Cuál es el río más largo del mundo?",
       "respuestas": ["Nilo", "Amazonas", "Yangtsé", "Mississippi"],
@@ -204,17 +260,59 @@
       "dificultad": 13
     },
     {
+      "id": "pregunta13",
+      "pregunta": "¿Cuál es la montaña más alta del mundo?",
+      "respuestas": ["Monte Kilimanjaro", "Monte McKinley", "Monte Everest", "Montaña Aconcagua"],
+      "respuesta_correcta": "Monte Everest",
+      "dificultad": 13
+    },
+    {
+      "id": "pregunta13",
+      "pregunta": "¿Cuál es el metal más ligero que existe?",
+      "respuestas": ["Hierro", "Aluminio", "Hidrógeno", "Plomo"],
+      "respuesta_correcta": "Hidrógeno",
+      "dificultad": 13
+    },
+    {
       "id": "pregunta14",
-      "pregunta": " De qué color es burbuja",
-      "respuestas": ["Rojo", "Azul", "Verde", "Rosa"],
-      "respuesta_correcta": "Azul",
+      "pregunta": "¿Cuál es el país más grande del mundo en términos de superficie terrestre?",
+      "respuestas": ["Estados Unidos", "China", "Rusia", "Andorra la Vella"],
+      "respuesta_correcta": "Rusia",
+      "dificultad": 14
+    },
+    {
+      "id": "pregunta14",
+      "pregunta": "¿Cuál es la capital de Australia?",
+      "respuestas": ["Melbourne", "Canberra", "Madrid", "Sídney"],
+      "respuesta_correcta": "Canberra",
+      "dificultad": 14
+    },
+    {
+      "id": "pregunta14",
+      "pregunta": " ¿Cuál es la novela más vendida de todos los tiempos?",
+      "respuestas": ["Harry Potter y la Piedra Filosofal", "El Principito", "La historia de Adobe Campaign", "Don Quijote de la Mancha"],
+      "respuesta_correcta": "Don Quijote de la Mancha",
       "dificultad": 14
     },
     {
       "id": "Pregunta15",
-      "pregunta": "como se llama mi perro",
-      "respuestas": ["loki", "kairy", "tobi", "kkk"],
-      "respuesta_correcta": "kairy",
+      "pregunta": "¿Quién pintó la obra La última cena?",
+      "respuestas": ["Jeanine Murcia Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Luigi da Vinci"],
+      "respuesta_correcta": "Leonardo da Vinci",
+      "dificultad": 15
+    },
+    {
+      "id": "Pregunta15",
+      "pregunta": " ¿Cuál es la obra más famosa del compositor Ludwig van Beethoven?",
+      "respuestas": ["Sinfonía No. 5", "Sinfonía No. 9 (Coral)", "Himno de Ntt Data", "Für Elise"],
+      "respuesta_correcta": "Sinfonía No. 9 (Coral)",
+      "dificultad": 15
+    },
+    {
+      "id": "Pregunta15",
+      "pregunta": "¿Cuál es el nombre del actor que interpretó a Severus Snape en las películas de Harry Potter?",
+        "respuestas": ["Ralph Fiennes", "Hector el Malo", "Daniel Radcliffe", "Alan Rickman"],
+      "respuesta_correcta": "Alan Rickman",
       "dificultad": 15
     }
   ]

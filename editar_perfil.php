@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
         $stmt->execute();
 
         if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
-            $message = 'Gracias por tus respuestas :)';
+            $message = 'Datos guardados';
         } else { //si no se envía un mensaje de error
             $message = 'Ups! algo salió mal';
         }

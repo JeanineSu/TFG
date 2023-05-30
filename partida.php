@@ -22,6 +22,16 @@ if (isset($_SESSION['user_id'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="module" src="codigo.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            background: url('./images/background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-top: 0em;
+            max-height: 100vh;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 <body>
 <?php require 'partials/header.php' ?>

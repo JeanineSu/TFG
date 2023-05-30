@@ -3,6 +3,23 @@ session_start();
 require 'database.php';
 
 if (isset($_SESSION['user_id'])) {
+    // Verificar si se ha enviado una solicitud para eliminar la cuenta
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_account'])) {
+        // Eliminar la cuenta del usuario de la base de datos
+        $stmt = $conn->prepare('DELETE FROM users WHERE id = :id');
+        $stmt->bindParam(':id', $_SESSION['user_id']);
+        $stmt->execute();
+
+        // Cerrar la sesión y redirigir al usuario a la página de inicio de sesión
+        session_destroy();
+        header('Location: index.php');
+        exit;
+    }
+
+    // Resto del código de tu aplicación...
+}
+
+if (isset($_SESSION['user_id'])) {
     // Verificar si el perfil ya ha sido editado
     // if (isset($_SESSION['profile_edited'])) {
     //     echo "El perfil ya ha sido editado.";
@@ -25,7 +42,7 @@ if (isset($_SESSION['user_id'])) {
         $stmt->execute();
 
         if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
-            $message = 'Datos guardados';
+            $message = 'Gracias por tus respuestas :)';
         } else { //si no se envía un mensaje de error
             $message = 'Ups! algo salió mal';
         }
@@ -56,8 +73,6 @@ if (isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Editar Perfil</title>
-
-
     <style>
         body{
             background: url('./images/background.jpg');
@@ -73,15 +88,17 @@ if (isset($_SESSION['user_id'])) {
         <input type="text" id="new_apodo" name="new_apodo" required value="<?php echo $user['apodo']; ?>">
     </div>
     <div>
-        <label for="new_email">Nuevo Email:</label><br><br>
-        <input type="email" id="new_email" name="new_email" required value="<?php echo $user['email']; ?>"><br><br>
+        <label for="new_email">Nuevo Email:</label>
+        <input type="email" id="new_email" name="new_email" required value="<?php echo $user['email']; ?>">
     </div>
     <div>
         <label for="new_password">Nueva Contraseña:</label>
         <input type="password" id="new_password" name="new_password" required value="<?php echo $user['password']; ?>">
     </div>
     <div>
-        <input type="submit" value="Guardar Cambios" formaction="partida.php">
+        <input type="submit" value="Guardar Cambios" formaction="">
+        <input type="submit" value="Volver" formaction="partida.php ">
+        <input type="submit" name="delete_account" value="Eliminar cuenta" >
     </div>
 </form>
 </body>

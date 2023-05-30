@@ -150,6 +150,42 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
             margin: 0;
         }
 
+        .hidden {
+            display: none;
+        }
+        .close-cross {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .close-cross:before,
+        .close-cross:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 2px;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-cross:before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .close-cross:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .close-cross:hover:before,
+        .close-cross:hover:after {
+            background-color: #999;
+        }
 
     </style>
 </head>
@@ -173,6 +209,7 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
 
     <div class="form-container">
         <p>Si deseas recibir un pequeño obsequio rellena los siguientes campos</p>
+        <div class="close-cross" onclick="cerrarFormulario()"></div>
         <button type="button" onclick="verTrofeo()">Ver trofeo</button>
         <button type="button" onclick="habilitarCampos()">Enviar a casa</button>
         <?php if(!empty($user)): ?>
@@ -260,6 +297,10 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
         document.getElementById("codigopostal").disabled = false;
         document.getElementById("calle").disabled = false;
         document.getElementById("envio").disabled = false;
+    }
+    function cerrarFormulario() {
+        var formContainer = document.querySelector(".form-container");
+        formContainer.classList.add("hidden");
     }
 
 </script>

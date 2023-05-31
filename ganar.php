@@ -149,10 +149,6 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
             -webkit-appearance: none;
             margin: 0;
         }
-
-        .hidden {
-            display: none;
-        }
         .close-cross {
             position: absolute;
             top: 10px;
@@ -187,6 +183,7 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
             background-color: #999;
         }
 
+
     </style>
 </head>
 
@@ -209,7 +206,13 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
 
     <div class="form-container">
         <p>Si deseas recibir un pequeño obsequio rellena los siguientes campos</p>
-        <div class="close-cross" onclick="cerrarFormulario()"></div>
+        <button class="x" formaction="ganar.php" style="position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer; margin: auto; background-image: url('/images/x.png'); background-color: transparent;
+            background-size: cover; background-position: center; background-repeat: no-repeat" ></button>
         <button type="button" onclick="verTrofeo()">Ver trofeo</button>
         <button type="button" onclick="habilitarCampos()">Enviar a casa</button>
         <?php if(!empty($user)): ?>
@@ -298,10 +301,7 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
         document.getElementById("calle").disabled = false;
         document.getElementById("envio").disabled = false;
     }
-    function cerrarFormulario() {
-        var formContainer = document.querySelector(".form-container");
-        formContainer.classList.add("hidden");
-    }
+
 
 </script>
 

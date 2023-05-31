@@ -32,7 +32,7 @@ if (isset($_SESSION['user_id'])) {
             background: url('./images/background.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-            padding-top: 4em;
+            background-attachment: fixed;
             max-height: 100vh;
         }
 

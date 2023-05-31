@@ -42,7 +42,8 @@ if (isset($_SESSION['user_id'])) {
         $stmt->execute();
 
         if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
-            $message = 'Gracias por tus respuestas :)';
+            header('Location: partida.php');
+            exit;
         } else { //si no se envía un mensaje de error
             $message = 'Ups! algo salió mal';
         }
@@ -96,7 +97,7 @@ if (isset($_SESSION['user_id'])) {
         <input type="password" id="new_password" name="new_password" required value="<?php echo $user['password']; ?>">
     </div>
     <div>
-        <input type="submit" value="Guardar Cambios" formaction="">
+        <input type="submit" value="Guardar Cambios" >
         <input type="submit" value="Volver" formaction="partida.php ">
         <input type="submit" name="delete_account" value="Eliminar cuenta" >
     </div>

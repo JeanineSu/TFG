@@ -16,35 +16,33 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
     $message = '';
 
-    if (is_array($results) > 0 && $_POST['password'] === $results['password']) {
+    if (is_array($results) > 0 &&  $_POST['password'] === $results['password']) {
         $_SESSION['user_id'] = $results['id'];
         header("Location: partida.php");
     } else {
-        $message = 'Lo siento, las credenciales no coinciden';
+        $message = 'Las credenciales no coinciden, vuelve a introducir los datos';
     }
 }
 
 ?>
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>LOGIN</title>
+    <title>Iniciar sesion</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        input[type="text"],
-        input[type="submit"],
-        input[type="password"] {
-            border: none;
-        }
-        body{
+        body {
             background: url('./images/background.jpg');
         }
 
         form {
             padding-top: 3rem;
+        }
+
+        a:hover {
+            text-shadow: 0 0 8px #fff, 0 0 12px #fff, 0 0 16px #fff;
         }
 
     </style>
@@ -58,13 +56,12 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     <h1>Iniciar sesión</h1>
     <div class="input_fields">
 
-        <input type="text" name="email" placeholder="Escribe tu email" class="caja">
-        <input type="password" name="password" placeholder="Escribe tu contraseña">
+        <input type="text" name="email" placeholder="Escribe tu email" required>
+        <input type="password" name="password" placeholder="Escribe tu contraseña" required>
         <input type="submit" class="boton_style" value="Confirmar">
     </div>
 </form>
 <br><br>
-<a href="registrarse.php">Registrarse</a>
 <a href="index.php">Volver</a>
 
 <?php if (isset($message)): ?>

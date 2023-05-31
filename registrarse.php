@@ -2,29 +2,41 @@
 
 require 'database.php';
 
+$message = ''; // Variable global para los mensajes
 
-$message = ''; //variable global para los mensajes
-
-//si los campos que recibo a traves del metodo POST no estan vacios se pueden agregar a la bbdd
+// Si los campos que recibo a través del método POST no están vacíos, se pueden agregar a la base de datos
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $sql = "INSERT INTO users (apodo, email, password) VALUES (:apodo, :email, :password)"; //variable de sql
 
-    $stmt = $conn->prepare($sql); //crear variable para ejecutar el metodo prepare (que ejecuta la consulta sql)
+    // Verificar si el email ya existe en la base de datos
+    $email = $_POST['email'];
+    $checkEmail = "SELECT COUNT(*) FROM users WHERE email = :email";
+    $stmt = $conn->prepare($checkEmail);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $emailCount = $stmt->fetchColumn();
 
-    $stmt->bindParam(':apodo', $_POST['apodo']); //vincular parametros
-    $stmt->bindParam(':email', $_POST['email']); //vincular parametros
-    $stmt->bindParam(':password', $_POST['password']);
-    //    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//almacenar la contraseña en una variable y cifrarla
-    //    $stmt->bindParam(':password', $password);
+    if ($emailCount > 0) {
+        // El email ya existe en la base de datos
+        $message = 'El email ya está registrado';
+    } else {
 
-    if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
-        $message = 'Usuario creado';
-    } else { //si no se envía un mensaje de error
-        $message = 'Lo sentimos, no se ha podido crear su usuario';
+        // El email no existe en la base de datos, procedemos con la inserción
+        $sql = "INSERT INTO users (apodo, email, password) VALUES (:apodo, :email, :password)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':apodo', $_POST['apodo']);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $_POST['password']);
+
+        if ($stmt->execute()) {
+            $message = 'Usuario creado con éxito';
+        } else {
+            $message = 'Lo sentimos, no se ha podido crear su usuario';
+        }
     }
-
 }
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -47,6 +59,9 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         form {
             padding-top: 3rem;
         }
+        a:hover {
+            text-shadow: 0 0 8px #fff, 0 0 12px #fff, 0 0 16px #fff;
+        }
     </style>
 </head>
 
@@ -55,18 +70,17 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
 <form action="registrarse.php" method="post">
     <h1>Registrarse</h1>
-    <input type="text" name="apodo" placeholder="Escribe un apodo">
-    <input type="text" name="email" placeholder="Ingresa el email">
-    <input type="password" name="password" placeholder="Escribe una contraseña">
+    <input type="text" name="apodo" placeholder="Escribe un apodo" required>
+    <input type="email" name="email" placeholder="Ingresa el email" required>
+    <input type="password" name="password" placeholder="Escribe una contraseña" required>
 
     <input type="submit" class="boton_style" value="Confirmar">
     <?php if (isset($message)): ?>
         <p style="color: white;"><?php echo $message; ?></p>
     <?php endif; ?>
 </form>
-<br><br>
+<br>
 <div class="form-opt">
-    <a href="iniciar_sesion.php">Iniciar sesión</a>
     <a href="index.php">Volver</a>
 </div>
 </html>

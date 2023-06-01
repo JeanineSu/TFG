@@ -33,7 +33,7 @@ label {
     color: white;
 }
 
-/*Estilo para los campos del inicio_sesion*/
+/*Estilo para los campos submit*/
 input[type="text"], [type="email"], [type="password"], [type="number"]{
     outline: none;
     padding: 20px;

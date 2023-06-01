@@ -15,17 +15,9 @@ if (isset($_SESSION['user_id'])) {
         header('Location: index.php');
         exit;
     }
-
-    // Resto del código de tu aplicación...
 }
 
 if (isset($_SESSION['user_id'])) {
-    // Verificar si el perfil ya ha sido editado
-    // if (isset($_SESSION['profile_edited'])) {
-    //     echo "El perfil ya ha sido editado.";
-    //     exit;
-    // }
-
     // Verificar si se ha enviado un formulario para actualizar los datos
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener los datos enviados por el formulario
@@ -41,14 +33,12 @@ if (isset($_SESSION['user_id'])) {
         $stmt->bindParam(':id', $_SESSION['user_id']);
         $stmt->execute();
 
-        if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
+        if ($stmt->execute()) { //Si esta variable se ejecuta redirige al usuario a partida
             header('Location: partida.php');
             exit;
         } else { //si no se envía un mensaje de error
             $message = 'Ups! algo salió mal';
         }
-        // Marcar el perfil como editado
-        // $_SESSION['profile_edited'] = true;
 
         // Obtener los datos del usuario actualizados
         $stmt = $conn->prepare('SELECT id, apodo, email, password FROM users WHERE id = :id');
@@ -64,8 +54,6 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,6 +65,9 @@ if (isset($_SESSION['user_id'])) {
     <style>
         body{
             background: url('./images/background.jpg');
+        }
+        input.delete-button:hover {
+            background-color: darkred;
         }
     </style>
 </head>
@@ -99,9 +90,8 @@ if (isset($_SESSION['user_id'])) {
     <div>
         <input type="submit" value="Guardar Cambios" >
         <input type="submit" value="Volver" formaction="partida.php ">
-        <input type="submit" name="delete_account" value="Eliminar cuenta" >
+        <input type="submit" name="delete_account" value="Eliminar cuenta" class="delete-button">
     </div>
 </form>
 </body>
-
 </html>

@@ -229,6 +229,11 @@ function pintarPreguntas(dificultad, respuesta = null){
     $(this).remove()
 
     var $p = $("<p class='votacion'>").text("El publico está votando...");
+    $p.addClass("votacion"); // Agregar la clase "votacion"
+    $p.css({
+      "color": "white",
+    });
+
     $("#quizContainer").append($p);
     $(".votacion:not(:last)").remove();
 
@@ -287,7 +292,7 @@ function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto
   var mensaje;
   if(numeroAleatorio < porcentajeAcierto ){
     mensaje = "Estoy bastante seguro de que la respuesta es ";
-    return mensaje + respuesta_correcta;
+    return "<span style='color: white;'>" + mensaje + respuesta_correcta;
   }
 
   const respuestasAleatorias = respuestas.filter(respuesta => respuesta !== respuesta_correcta);
@@ -298,7 +303,7 @@ function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto
     "Uf, que dificil, pues conozco la respuesta lo siento",
     "Estoy un poco al 50/50 entre " + respuesta_final + " y " + respuesta_correcta + ', pero me decanto más por ' + respuesta_final]
 
-  return mensaje[posicionAleatoria]// Devolver el mensaje seleccionado aleatoriamente
+  return "<span style='color: white;'>" + mensaje[posicionAleatoria]// Devolver el mensaje seleccionado aleatoriamente
 }
 
 

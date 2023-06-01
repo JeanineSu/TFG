@@ -72,9 +72,9 @@
     },
     {
       "id": "pregunta4",
-      "pregunta": "¿Cuál de los siguientes físicos NO ganó un nobel?",
-      "respuestas": ["Albert Einstein", "Richard Feynman", "Niels Bohr", "Stephen Hawking"],
-      "respuesta_correcta": "Albert Einstein",
+      "pregunta": "¿Quién es M.Rajoy?",
+      "respuestas": ["Murcia Rajoy", "Manoj Rajoy", "Mariano Rajoy", "Mario Rajoy"],
+      "respuesta_correcta": "Mariano Rajoy",
       "dificultad": 4
     },
     {
@@ -142,9 +142,9 @@
     },
     {
       "id": "pregunta7",
-      "pregunta": "¿Cuál es el nombre de la hija de Kratos en God of War?",
-      "respuestas": ["Ellie", "Atreus", "Perséfone", "Calíope"],
-      "respuesta_correcta": "Calíope",
+      "pregunta": "¿Qué es el ornitorrinco?",
+      "respuestas": ["Mamífero", "Vivíparo", "Ave", "Anfibio"],
+      "respuesta_correcta": "Mamífero",
       "dificultad": 7
     },
     {
@@ -268,9 +268,9 @@
     },
     {
       "id": "pregunta13",
-      "pregunta": "¿Cuál es el metal más ligero que existe?",
-      "respuestas": ["Hierro", "Aluminio", "Hidrógeno", "Plomo"],
-      "respuesta_correcta": "Hidrógeno",
+      "pregunta": "¿Quién fue la primera programadora de la historia?",
+      "respuestas": ["Grace Hopper", "Ada Lovelace", "Margaret Hamilton", "Alan Turing"],
+      "respuesta_correcta": "Ada Lovelace",
       "dificultad": 13
     },
     {

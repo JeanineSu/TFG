@@ -26,18 +26,18 @@ try {
 }
 
 
-$message = ''; //variable global para los mensajes
+$message = '';
 
-//si los campos que recibo a traves del metodo POST no estan vacios se pueden agregar a la bbdd
-if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_POST['calle'])) {
-    $sql = "INSERT INTO direccion (provincia, codigopostal, calle) VALUES (:provincia, :codigopostal, :calle)"; //variable de sql
+//Si los campos que recibo a traves del metodo POST no están vacios se agregan a la bbdd
+if (!empty($_POST['email']) &&!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_POST['calle'])) {
+    $sql = "INSERT INTO direccion (email, provincia, codigopostal, calle) VALUES (:email, :provincia, :codigopostal, :calle)"; //variable de sql
 
     $stmt = $conn->prepare($sql); //crear variable para ejecutar el metodo prepare (que ejecuta la consulta sql)
+    $stmt->bindParam(':email', $_POST['email']);
     $stmt->bindParam(':provincia', $_POST['provincia']);
     $stmt->bindParam(':codigopostal', $_POST['codigopostal']);
     $stmt->bindParam(':calle', $_POST['calle']);
     $stmt->execute();
-
 }
 ?>
 <!DOCTYPE html>
@@ -182,8 +182,6 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
         .close-cross:hover:after {
             background-color: #999;
         }
-
-
     </style>
 </head>
 
@@ -206,19 +204,20 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
 
     <div class="form-container">
         <p>Si deseas recibir un pequeño obsequio rellena los siguientes campos</p>
+
         <button class="x" formaction="ganar.php" style="position: absolute;
             top: 10px;
             right: 10px;
-            width: 20px;
-            height: 20px;
-            cursor: pointer; margin: auto; background-image: url('/images/x.png'); background-color: transparent;
-            background-size: cover; background-position: center; background-repeat: no-repeat" ></button>
+            width: auto;
+            height: auto;
+            padding: 0px;
+            cursor: pointer; margin: auto; background-color: transparent; background-color: darkred" ><img src="images/x.png" alt=""></button>
         <button type="button" onclick="verTrofeo()">Ver trofeo</button>
         <button type="button" onclick="habilitarCampos()">Enviar a casa</button>
         <?php if(!empty($user)): ?>
             <input type="text" id="email" name="email" required value="<?php echo $user['email']; ?>" readonly>
-
         <?php endif; ?>
+
         <label for="provincia">Provincia:</label>
         <select id="provincia" name="provincia" disabled>
             <option value="">Seleccione una provincia</option>
@@ -283,6 +282,7 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
 <?php if (isset($message)): ?>
     <p style="color: white;"><?php echo $message; ?></p>
 <?php endif; ?>
+
 <script>
     function mostrarFormulario() {
         var formulario = document.getElementById("formulario");
@@ -290,9 +290,7 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
     }
 
     function verTrofeo() {
-        // Aquí puedes añadir la lógica para descargar la imagen
-        // Por ejemplo:
-        window.location.href = "images/logo.png";
+        window.location.href = "images/trofeo.png";
     }
 
     function habilitarCampos() {
@@ -301,8 +299,6 @@ if (!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_PO
         document.getElementById("calle").disabled = false;
         document.getElementById("envio").disabled = false;
     }
-
-
 </script>
 
 

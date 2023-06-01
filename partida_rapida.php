@@ -28,6 +28,7 @@ $stmt->execute();
 <!doctype html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <meta charset="UTF-8">
     <title>Datos de la partida</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">

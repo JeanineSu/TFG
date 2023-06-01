@@ -58,9 +58,12 @@ if (isset($_SESSION['user_id'])) {
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/logoMemoria.png"/>
     <link rel="stylesheet" href="assets/css/style.css">
+
     <title>Editar Perfil</title>
     <style>
         body{

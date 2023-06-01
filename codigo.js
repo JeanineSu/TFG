@@ -6,7 +6,7 @@ let aciertos = 0;
 let temporizador;
 let comodin_publico_usado = false;
 let comodin_50 = false;
-let musica = false;
+
 
 const quizContainer = $('#quizContainer');//Crear un contenedor quiz
 const quizForm = $('#quizForm');//Formulario del quiz
@@ -37,8 +37,6 @@ $(document).ready(function(){
 // Función que se ejecuta cuando el documento está listo
   $('#start').click(function(){
     // Acción cuando se hace clic en el elemento con id "start"
-    $(".musica").show()
-    // Mostrar elementos con la clase "musica"
     $('#temporizador').show()
     // Mostrar elementos con la clase "temporizador"
     $('#aciertos').show()
@@ -53,51 +51,16 @@ $(document).ready(function(){
   });
 
 
-  $("#play-button").click(function(){
-    // Acción cuando se hace clic en el elemento con id "play-button"
-    if(musica){
-      // Si la música está activada
-      musica = false;// Desactivar la música
-      $("#intro").get(0).pause()// Pausar la reproducción de la música
-      $("#play-button").css("background-color", "red");// Cambiar el color de fondo del botón a rojo
-    }else{
-      // Si la música está desactivada
-      musica = true;// Activar la música
-      $("#intro").get(0).play()// Iniciar la reproducción de la música
-      $("#play-button").css("background-color", "green");// Cambiar el color de fondo del botón a verde
-    }
-
-    var $p = $("<p>").text("Música " + (musica ? "activada" : "desactivada"));
-// Agregar el párrafo al elemento con la clase "musica"
-    $(".musica").append($p);
-
-    setTimeout(function() {
-      $p.remove();
-    }, 2500);// Eliminar el párrafo después de 2500 milisegundos (2.5 segundos)
-  })
-
   $("#plantarse").click(function(event){
-    event.preventDefault();// Evita el comportamiento predeterminado del evento de clic
+    event.preventDefault(); // Evita el comportamiento predeterminado del evento de clic
 
     const maximo_preguntas = Object.keys(dinero).length; // Obtiene la cantidad máxima de preguntas desde el objeto 'dinero'
 
-    // Comprueba si el número de aciertos es menor que la mitad de la cantidad máxima de preguntas
-    if (aciertos < (maximo_preguntas / 2) ){
-      alert("Lo siento, pero te vas sin nada") // Muestra un mensaje de alerta indicando que el usuario se va sin premio
-      location.reload()// Recarga la página actual
-      return;// Sale de la función
-    }
-// Comprueba si el número de aciertos es mayor que la mitad de la cantidad máxima de preguntas y menor que la cantidad máxima de preguntas menos 3
-    else if(aciertos > (maximo_preguntas / 2) && aciertos < (maximo_preguntas - 3)){
-      // Muestra un mensaje de alerta indicando la mitad del premio
-      alert("Enhorabuena, usuario, te llevas " + parseInt(dinero[aciertos]) / 2 + "K");
-      location.reload()// Muestra un mensaje de alerta indicando el premio obtenido
-      return;
-    }
-
-    alert("Enhorabuena, tu premio es de " + dinero[aciertos] );
+    alert("Enhorabuena, tu premio es de " + dinero[aciertos]);
+    window.location.href = "index.php";
     return;
-  })
+  });
+
 })
 
 
@@ -190,20 +153,8 @@ function pintarPreguntas(dificultad, respuesta = null){
       }else{
         pintarPreguntas(dificultad)// Vuelve a pintar las preguntas con la nueva dificultad
       }
-
       return;
     }else{
-
-      if(musica){
-
-        let intro = $("#intro").get(0);// Reproduce el sonido de respuesta
-
-        if(!intro.paused){
-          intro.pause()
-        }
-
-        $("#incorrecto").get(0).play();// Redirige al usuario a la página de perder.php después de un segundo
-      }
       respuestaSeleccionada.css('background-color', 'red');
       respuestaSeleccionada.next('label').css('background-color', 'red');
       // alert("HAS PERDIDO")
@@ -286,10 +237,12 @@ function aplicarComodinPublico(respuestas) {// Función para aplicar el comodín
   return porcentajes;// Devolver el arreglo con los porcentajes de votos del público
 }
 
-function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto){// Función para aplicar el comodín de la llamada
+// Función para aplicar el comodín de la llamada
+function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto){
 
   const numeroAleatorio = Math.floor(Math.random() * 100);
   var mensaje;
+  //Si el número aleatorio generado es mayor que el porcentajeAcierto se manda el mensaje
   if(numeroAleatorio < porcentajeAcierto ){
     mensaje = "Estoy bastante seguro de que la respuesta es ";
     return "<span style='color: white;'>" + mensaje + respuesta_correcta;
@@ -307,8 +260,8 @@ function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto
 }
 
 
-function getQuestion(dificultad, respuesta = null){// Función para obtener una pregunta
-  const preguntas = data.preguntas; // Obtener todas las preguntas del objeto "data"
+function getQuestion(dificultad, respuesta = null){
+  const preguntas = data.preguntas;
   const preguntasFiltradas = preguntas.filter(function(pregunta) {
 
     if(respuesta != null){
@@ -323,18 +276,17 @@ function getQuestion(dificultad, respuesta = null){// Función para obtener una 
   return preguntasFiltradas[posicionAleatoria];// Devolver la pregunta seleccionada aleatoriamente
 }
 
-function startTimer(segundos, element){// Función para iniciar el temporizador
-  var timerElement = $(element);// Elemento del temporizador
-
+// Función para iniciar el temporizador
+function startTimer(segundos, element){
+  var timerElement = $(element);
   temporizador = setInterval(function() {
     segundos--;// Reducir el número de segundos
     timerElement.text(segundos);// Detener el temporizador si se agotan los segundos
 
     if (segundos <= 0) {
-      clearInterval(temporizador);// Actualizar el elemento del temporizador con el número de segundos restantes
-      // alert("SE HA ACABADO EL TIEMPO, HAS PERDIDO.")
-      $('#submit').click()// Hacer clic en el botón de envío del formulario
-      window.location.href = "perder.php";// Redireccionar a la página de perder
+      clearInterval(temporizador);
+      $('#submit').click()
+      window.location.href = "perder.php";
       return;
     }
   }, 1000);

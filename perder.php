@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <title>Derrota</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -13,6 +14,7 @@
             background-size: cover;
             padding-top: 4em;
             max-height: 100vh;
+            background-attachment: fixed;
         }
 
         h1 {

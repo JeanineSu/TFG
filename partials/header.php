@@ -48,9 +48,6 @@
             <li>
                 <a href="registrarse.php">Registrarse</a>
             </li>
-            <li>
-                <a href="encuesta.php">Encuesta de satisfacción</a>
-            </li>
         </ul>
     </nav>
 </header>

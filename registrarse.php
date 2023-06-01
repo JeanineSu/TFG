@@ -41,6 +41,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <meta charset="UTF-8">
     <title>Registro</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
@@ -70,9 +71,9 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
 <form action="registrarse.php" method="post">
     <h1>Registrarse</h1>
-    <input type="text" name="apodo" placeholder="Escribe un apodo" required>
+    <input type="text" name="apodo" placeholder="Escribe un apodo" pattern="^[^&quot;]*$" required>
     <input type="email" name="email" placeholder="Ingresa el email" required>
-    <input type="password" name="password" placeholder="Escribe una contraseña" required>
+    <input type="password" name="password" placeholder="Escribe una contraseña" pattern="^[^&quot;]*$" required>
 
     <input type="submit" class="boton_style" value="Confirmar">
     <?php if (isset($message)): ?>

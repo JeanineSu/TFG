@@ -44,6 +44,7 @@ if (!empty($_POST['email']) &&!empty($_POST['provincia']) && !empty($_POST['codi
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <title>Victoria</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -182,6 +183,11 @@ if (!empty($_POST['email']) &&!empty($_POST['provincia']) && !empty($_POST['codi
         .close-cross:hover:after {
             background-color: #999;
         }
+        .disabled-button {
+            background-color: #ccc;
+            color: #888;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -198,7 +204,7 @@ if (!empty($_POST['email']) &&!empty($_POST['provincia']) && !empty($_POST['codi
 <a href="encuesta.php">Encuesta de satisfacción</a>
 <a href="logout.php">Salir</a>
 
-<button onclick="mostrarFormulario()">Obtén tu premio</button>
+<button onclick="mostrarFormulario()" <?php if(empty($user)) echo 'disabled'; ?> class="<?php if(empty($user)) echo 'disabled-button'; ?>">Obtén tu premio</button>
 
 <form action="ganar.php" method="post" id="formulario">
 

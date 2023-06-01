@@ -150,25 +150,25 @@ button{
 #temporizador {
     font-size: 36px;
     font-weight: bold;
-    color: #000;
+    color: white;
 }
-#temporizador span {
-    animation: countdown 30s linear forwards;
-}
-@keyframes countdown {
-    0% {
-        color: #000;
-    }
-    66.66% {
-        color: #000;
-    }
-    83.33% {
-        color: #ff0000; /* Cambia de color a rojo */
-    }
-    100% {
-        color: #ff0000; /* Mantiene el color rojo */
-    }
-}
+/*#temporizador span {*/
+/*    animation: countdown 30s linear forwards;*/
+/*}*/
+/*@keyframes countdown {*/
+/*    0% {*/
+/*        color: #000;*/
+/*    }*/
+/*    66.66% {*/
+/*        color: #000;*/
+/*    }*/
+/*    83.33% {*/
+/*        color: #ff0000; !* Cambia de color a rojo *!*/
+/*    }*/
+/*    100% {*/
+/*        color: #ff0000; !* Mantiene el color rojo *!*/
+/*    }*/
+/*}*/
 
 /*Estilos para las preguntas y respuestas*/
 #nivel_pregunta, #aciertos{

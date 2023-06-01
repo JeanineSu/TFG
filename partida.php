@@ -1,13 +1,13 @@
 <?php
 session_start();
 require 'database.php';
-if (isset($_SESSION['user_id'])){
-    $records=$conn->prepare('SELECT id, apodo, email, password FROM users WHERE id =:id');
+if (isset($_SESSION['user_id'])) {
+    $records = $conn->prepare('SELECT id, apodo, email, password FROM users WHERE id =:id');
     $records->bindParam(':id', $_SESSION['user_id']);
     $records->execute();
-    $results=$records->fetch(PDO::FETCH_ASSOC);
+    $results = $records->fetch(PDO::FETCH_ASSOC);
 
-    $user=null;
+    $user = null;
 
     if (count($results) > 0) {
         $user = $results;
@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id'])){
 <!DOCTYPE html>
 <html>
 <head>
-
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <title>Quien quiere ser millonario</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="module" src="codigo.js"></script>
@@ -35,9 +35,10 @@ if (isset($_SESSION['user_id'])){
 </head>
 <body>
 <?php require 'partials/header.php' ?>
-<?php if(!empty($user)): ?>
+<?php if (!empty($user)): ?>
     <br> <span style="color: white; font-family: Arial, sans-serif;font-size: 2rem; font-weight: bold">Hola</span>
-    <span id="usuario" style="color: white; font-family: Arial, sans-serif; font-size: 2rem; font-weight: bold"> <?= $user['apodo'];  ?></span>
+    <span id="usuario"
+          style="color: white; font-family: Arial, sans-serif; font-size: 2rem; font-weight: bold"> <?= $user['apodo']; ?></span>
     <br><br>
     <a href="editar_perfil.php">Editar perfil</a>
     <br><br>
@@ -48,15 +49,6 @@ if (isset($_SESSION['user_id'])){
 <br><br><br>
 <body>
 <h1>Quien quiere ser millonario</h1>
-<audio src="./medios/respuesta_incorrecta.mp3" id="incorrecto" ></audio>
-<audio src="./medios/intro.mp3" id="intro"></audio>
-
-<div style="display:none;" class="musica">
-    <button id="play-button">
-        <img class="img_musica" src="images/sonido.png" alt="Texto alternativo">
-        Musica</button>
-    <div id="player"></div>
-</div>
 
 <p id="temporizador"> <!--Temporizador:--> <span id="tiempo"></span></p>
 
@@ -67,8 +59,8 @@ if (isset($_SESSION['user_id'])){
     <p id="aciertos">Aciertos: <span name="aciertos_acumulados" id="aciertos_acumulados"></span></p>
     <div id="quizContainer"></div>
     <div style="display:none;" id="botones_juego">
-        <button id="comodin_publico"><img class="img_publico" src="images/publico.png" alt=""> </button>
-        <button id="comodin_llamada"><img class="img_llamada" src="images/llamada.png" alt=""> </button>
+        <button id="comodin_publico"><img class="img_publico" src="images/publico.png" alt=""></button>
+        <button id="comodin_llamada"><img class="img_llamada" src="images/llamada.png" alt=""></button>
         <button id="comodin_50">50%</button>
         <button id="plantarse">Me planto</button>
     </div>

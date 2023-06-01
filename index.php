@@ -23,10 +23,11 @@ if (isset($_SESSION['user_id'])) {
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <title>Bienvenido</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+
     <style>
         body {
             background: url('./images/background.jpg');

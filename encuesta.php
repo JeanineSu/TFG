@@ -14,7 +14,7 @@ if (!empty($_POST['edad']) && !empty($_POST['ciudad']) && !empty($_POST['sexo'])
     $stmt->bindParam(':ciudad', $_POST['ciudad']);
     $stmt->bindParam(':sexo', $_POST['sexo']);
     $stmt->bindParam(':nota', $_POST['nota']);
-    $stmt->execute();
+
 
     if ($stmt->execute()) { //si esta variable se ejecuta se envía un mensaje de éxito
         $message = 'Gracias por tus respuestas :)';
@@ -27,10 +27,12 @@ if (!empty($_POST['edad']) && !empty($_POST['ciudad']) && !empty($_POST['sexo'])
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
     <meta charset="UTF-8">
     <title>Encuesta</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+
 
     <style>
         body{

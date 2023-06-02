@@ -18,7 +18,7 @@ if (isset($_SESSION['user_id'])) {
 <html>
 <head>
     <link rel="icon" type="image/png" href="/proyecto_jeanine/images/logo.png">
-    <title>Quien quiere ser millonario</title>
+    <title>Quién quiere ser millonario</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="module" src="codigo.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -48,8 +48,16 @@ if (isset($_SESSION['user_id'])) {
 <?php endif; ?>
 <br><br><br>
 <body>
-<h1>Quien quiere ser millonario</h1>
+<h1>Quién quiere ser millonario</h1>
+<audio src="./medios/respuesta_incorrecta.mp3" id="incorrecto" ></audio>
+<audio src="./medios/intro.mp3" id="intro"></audio>
 
+<div style="display:none;" class="musica">
+    <button id="play-button">
+        <img class="img_musica" src="images/sonido.png" alt="Texto alternativo">
+        Musica</button>
+    <div id="player"></div>
+</div>
 <p id="temporizador"> <!--Temporizador:--> <span id="tiempo"></span></p>
 
 <button id="start">Comenzar juego</button>

@@ -6,11 +6,12 @@ let aciertos = 0;
 let temporizador;
 let comodin_publico_usado = false;
 let comodin_50 = false;
+let musica = false;
 
 
-const quizContainer = $('#quizContainer');//Crear un contenedor quiz
-const quizForm = $('#quizForm');//Formulario del quiz
-//cantidades de dinero por nivle
+const quizContainer = $('#quizContainer');
+const quizForm = $('#quizForm');
+//Cantidades de dinero por niveles
 const dinero = {
   1: '1000 €',
   2: '5000 €',
@@ -29,30 +30,43 @@ const dinero = {
   15: '1.000.000 €',
 }
 
-$('#temporizador').hide() // Ocultar el elemento con el id "temporizador"
-$('#aciertos').hide() // Ocultar el elemento con el id "aciertos"
-$('#dinero').hide() // Ocultar el elemento con el id "dinero"
+// Ocultar los elementos en pantalla hasta que se pulse el comenzar
+$('#temporizador').hide()
+$('#aciertos').hide()
+$('#dinero').hide()
 
+//Función que se ejecuta cuando la página ha cargado
 $(document).ready(function(){
-// Función que se ejecuta cuando el documento está listo
+//Función que se ejecuta cuando se hace click en el elemento "start"(comenzar juego)
   $('#start').click(function(){
-    // Acción cuando se hace clic en el elemento con id "start"
+    //Cuando se clicka en start los elementos que antes estaban en hide pasan a show
+    $(".musica").show()
     $('#temporizador').show()
-    // Mostrar elementos con la clase "temporizador"
     $('#aciertos').show()
-    // Mostrar elementos con la clase "aciertos"
     $("#botones_juego").show()
-    // Mostrar elementos con la clase "botones_juego"
 
-    $(this).hide() // Ocultar el elemento en el que se hizo clic (con id "start")
+    $(this).hide() // Ocultar el elemento en el que se hizo click
 
-    pintarPreguntas(1); // Llamar a la función pintarPreguntas con el argumento 1
-
+    pintarPreguntas(1); // Llamar a la función pintarPreguntas con la dificultad 1
   });
 
-
+  //Función para ejecutar la música cuando se haga click en el botón
+  $("#play-button").click(function(){
+    if(musica){
+      // Si la música está activada
+      musica = false;// Desactivar la música
+      $("#intro").get(0).pause()// Pausar la reproducción de la música
+      $("#play-button").css("background-color", "red");// Cambiar el color de fondo del botón a rojo
+    }else{
+      // Si la música está desactivada
+      musica = true;// Activar la música
+      $("#intro").get(0).play()// Iniciar la reproducción de la música
+      $("#play-button").css("background-color", "green");// Cambiar el color de fondo del botón a verde
+    }
+  })
+//Función que se ejecuta cuando se haga click en plantarse
   $("#plantarse").click(function(event){
-    event.preventDefault(); // Evita el comportamiento predeterminado del evento de clic
+    event.preventDefault();// Evita el comportamiento predeterminado del evento de clic
 
     const maximo_preguntas = Object.keys(dinero).length; // Obtiene la cantidad máxima de preguntas desde el objeto 'dinero'
 
@@ -66,7 +80,7 @@ $(document).ready(function(){
 
 function pintarPreguntas(dificultad, respuesta = null){
   clearInterval(temporizador);// Detiene el temporizador
-  startTimer(30, '#tiempo');// Inicia un nuevo temporizador de 5 minutos
+  startTimer(30, '#tiempo');// Inicia un nuevo temporizador
   $(".posible_respuesta").remove();// Elimina elementos con la clase "posible_respuesta"
 
   const maximo_preguntas = Object.keys(dinero).length;// Obtiene la cantidad máxima de preguntas desde el objeto 'dinero'
@@ -76,25 +90,24 @@ function pintarPreguntas(dificultad, respuesta = null){
   const preguntas = getQuestion(dificultad, respuesta);// Obtiene las preguntas correspondientes a la dificultad
 
   const pregunta = preguntas.pregunta;// Obtiene la pregunta actual
-  var respuestas = preguntas.respuestas;// Obtiene las respuestas posibles
+  var respuestas = preguntas.respuestas;// Obtiene las respuestas
   const id = preguntas.id; // Obtiene el ID de la pregunta
   const respuesta_correcta = preguntas.respuesta_correcta;// Obtiene la respuesta correcta
 
   if (comodin_50) {
-    respuestas = aplicarComodin50(respuestas, respuesta_correcta);// Aplica el comodín 50/50 para reducir las opciones de respuesta
-    comodin_50 = false;// Marca el comodín 50/50 como utilizado
+    // Aplicar el comodín 50/50 para que solo se muestren en pantalla la respuesta correcta y otra cualquiera
+    respuestas = aplicarComodin50(respuestas, respuesta_correcta);
+    comodin_50 = false;// Marca el comodín 50/50 como utilizado y desaparece en pantalla
   }
 
   let porcentajes;
   if(comodin_publico_usado){
     porcentajes = aplicarComodinPublico(respuestas);// Obtiene los porcentajes de votación del comodín del público
   }
-
   respuestas.sort(ordenarRespuestasAleatoriamente);// Ordena las respuestas de forma aleatoria
 
   let questionElement = $('<div class="active" id="pregunta_'+id+'">');
   questionElement.append('<p>' + pregunta + '</p>');
-
 // Dividir las respuestas en dos columnas
   var column1 = $('<div class="columna">');
   var column2 = $('<div class="columna">');
@@ -102,16 +115,16 @@ function pintarPreguntas(dificultad, respuesta = null){
   questionElement.append(column2);
 
   $.each(respuestas, function(j){
+    //Asignar un input de tipo radio a las respuestas
     var input = $('<input name="respuestas" class="respuesta'+(j+1)+'">').attr({
       type: 'radio',
       value: respuestas[j]
     });
     var label = $('<label>').text(respuestas[j]);
-
+  //Si el comodín del público ha sido usado incluir un label con el texto correspondiente a los porcentajes en cada respuesta
     if(comodin_publico_usado){
       label = $('<label>').text(respuestas[j]  + ' (' + porcentajes[j] + '%)');
     }
-
     // Agregar las respuestas a las columnas correspondientes
     if (j < 2) {
       column1.append(input);
@@ -131,45 +144,43 @@ function pintarPreguntas(dificultad, respuesta = null){
 
   quizContainer.append(questionElement);
 
+  //Evento onchange para los elementos de tipo radio
   questionElement.on('change', 'input[type="radio"]', function() {
-    var respuestaSeleccionada = $(this);
+    var respuestaSeleccionada = $(this);//Asignar el input a la respuesta seleccionada por el usuario
     const respuestaUsuario = $(this).val();
-
+    //Si la variable seleccionada es igual a la correcta
     if(respuestaUsuario === respuesta_correcta){
       respuestaSeleccionada.css('background-color', 'green');
       respuestaSeleccionada.next('label').css('background-color', 'green');
-      aciertos++;
-      $('#dinero').show()
-      $('#dinero_acumulado').text(dinero[aciertos])
-      $("#aciertos_acumulados").text(aciertos)
+      aciertos++; //Se incrementa la variable aciertos en uno
+      $('#dinero').show() //Se muestra el elemento dinero
+      $('#dinero_acumulado').text(dinero[aciertos]) //Se actualiza el dinero
+      $("#aciertos_acumulados").text(aciertos)//Se actualizan los aciertos
 
       dificultad = aciertos + 1;
-      $("#pregunta_"+id).removeClass('active').hide();
+      $("#pregunta_"+id).removeClass('active').hide();//Se elimina la clase 'active' y se oculta el elemento con pregunta_
 
-      if(dificultad > maximo_preguntas){
-        // alert("ENHORABUENA HAS GANADO " + dinero[aciertos])
-        //$('#submit').click()
-        window.location.href = "ganar.php"; // Redirige al usuario a la página de ganar.php
+      if(dificultad > maximo_preguntas){ //Si el usuario ha llegado a la máxima dificultad (que es mayor que las preguntas)
+        window.location.href = "ganar.php"; // Redirige a la página de ganar.php
       }else{
         pintarPreguntas(dificultad)// Vuelve a pintar las preguntas con la nueva dificultad
       }
       return;
-    }else{
+    }else{ //Si no se cambia el color del elemento
       respuestaSeleccionada.css('background-color', 'red');
       respuestaSeleccionada.next('label').css('background-color', 'red');
       // alert("HAS PERDIDO")
       setTimeout(function() {
         window.location.href = "perder.php";
-        // $('#submit').click()
       }, 1000);
     }
   });
 
   $("#comodin_50").click(function(event){
     event.preventDefault();
-    $(this).remove()
+    $(this).remove()//Eliminar el elemento del DOM para que desaparezca
 
-    $(".active").remove()
+    $(".active").remove()//Eliminar todos los elementos con la clase "active" del DOM.
     comodin_50 = true;// Marca el comodín 50/50 como utilizado
 
     pintarPreguntas(dificultad, respuesta_correcta)// Vuelve a pintar las preguntas con la respuesta correcta
@@ -185,9 +196,9 @@ function pintarPreguntas(dificultad, respuesta = null){
       "color": "white",
     });
 
-    $("#quizContainer").append($p);
+    $("#quizContainer").append($p);//Agregar el elemento p a countainer
+    //Eliminar todos los elementos de la clase votación excepto el último, garantizando que solo haya uno visible
     $(".votacion:not(:last)").remove();
-
     setTimeout(function() {
       $(".active").remove()
       $p.remove();
@@ -201,29 +212,30 @@ function pintarPreguntas(dificultad, respuesta = null){
     $(this).remove()
 
     let posibleRespuesta = aplicarComodinLlamada(respuestas, respuesta_correcta, 50)// Aplica el comodín de llamada telefónica y obtiene una posible respuesta
-    posibleRespuesta = $('<p class="posible_respuesta">'+posibleRespuesta+'</p>');
-    quizForm.append(posibleRespuesta)
+    posibleRespuesta = $('<p class="posible_respuesta">'+posibleRespuesta+'</p>');//Asignar el resultado a la variable posibleRespuesta
+    quizForm.append(posibleRespuesta)//Agregar el elemento al formulario
     $(".posible_respuesta:not(:last)").remove();
 
   })
 }
-
-function ordenarRespuestasAleatoriamente(){// Función para ordenar las respuestas de forma aleatoria
+// Función para ordenar las respuestas de forma aleatoria
+function ordenarRespuestasAleatoriamente(){
   return Math.random() - 0.5;
 }
 
 function aplicarComodin50(respuestas, respuesta_correcta){// Función para aplicar el comodín 50/50
-  let opcionesRespuestas = [respuesta_correcta];
+  let opcionesRespuestas = [respuesta_correcta]; //Crear array y agregarle la respuesta correcta
 
-  // Obtener una respuesta aleatoria diferente a la respuesta correcta
+  // Filtrar las respuestas para obtener un nuevo array que excluya la respuesta_correcta
+  // Esto asegura que solo se obtengan respuestas diferentes a la respuesta correcta
   const respuestasAleatorias = respuestas.filter(respuesta => respuesta !== respuesta_correcta);
   const respuestaAleatoria = respuestasAleatorias[Math.floor(Math.random() * respuestasAleatorias.length)];
-  opcionesRespuestas.push(respuestaAleatoria);// Agregar la respuesta aleatoria al arreglo de opciones de respuesta
-  return opcionesRespuestas; // Devolver el arreglo con las dos opciones de respuesta
+  opcionesRespuestas.push(respuestaAleatoria);// Agregar la respuesta aleatoria al arra de opciones de respuesta
+  return opcionesRespuestas; // Devolver el array con las dos opciones de respuesta
 }
 
-function aplicarComodinPublico(respuestas) {// Función para aplicar el comodín del público
-  let porcentajes = [];// Arreglo para almacenar los porcentajes de votos del público
+function aplicarComodinPublico(respuestas) {
+  let porcentajes = [];// Array para almacenar los porcentajes de votos del público
   let porcentajeRestante = 100;// Porcentaje total inicial
 
   for (let i = 0; i < respuestas.length - 1; i++) {
@@ -237,7 +249,6 @@ function aplicarComodinPublico(respuestas) {// Función para aplicar el comodín
   return porcentajes;// Devolver el arreglo con los porcentajes de votos del público
 }
 
-// Función para aplicar el comodín de la llamada
 function aplicarComodinLlamada(respuestas, respuesta_correcta, porcentajeAcierto){
 
   const numeroAleatorio = Math.floor(Math.random() * 100);

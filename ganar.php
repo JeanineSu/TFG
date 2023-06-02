@@ -28,7 +28,7 @@ try {
 
 $message = '';
 
-//Si los campos que recibo a traves del metodo POST no están vacios se agregan a la bbdd
+//Si los campos que recibo a traves del metodo POST no están vacíos se agregan a la bbdd
 if (!empty($_POST['email']) &&!empty($_POST['provincia']) && !empty($_POST['codigopostal']) && !empty($_POST['calle'])) {
     $sql = "INSERT INTO direccion (email, provincia, codigopostal, calle) VALUES (:email, :provincia, :codigopostal, :calle)"; //variable de sql
 

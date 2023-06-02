@@ -63,15 +63,6 @@ if (isset($_SESSION['user_id'])) {
             box-shadow: -1px -1px 25px #fff, 2px 2px 20px #1f1e1e, inset 0px 0px 0px #fff, inset 0px 0px 0px #1f1e1e;
 
         }
-
-        /*.barra-superior,*/
-        /*.barra-inferior {*/
-        /*    background: linear-gradient(90deg, rgb(255, 255, 0), rgb(255, 201, 14));*/
-        /*    position: absolute;*/
-        /*    height: 10px;*/
-        /*    width: 100%;*/
-        /*}*/
-
         .barra-superior {
 
             top: 0;
@@ -84,7 +75,6 @@ if (isset($_SESSION['user_id'])) {
 <div class="barra-superior"></div>
 <?php if (!empty($user)) : ?>
 <!--    <br> Bienvenido. --><?php //= $user['apodo'], ' ', $user['id'];  ?>
-<!--    <br>oleee TE HAS LOGEADO-->
     <a href="logout.php">
         Logout
     </a>
